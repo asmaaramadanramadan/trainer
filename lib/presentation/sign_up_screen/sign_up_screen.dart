@@ -22,76 +22,65 @@ class SignUpScreen extends StatelessWidget {
             appBar: _buildAppBar(context),
             body: SizedBox(
                 width: SizeUtils.width,
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: SizedBox(
-                        height: SizeUtils.height,
-                        child: Form(
-                            key: _formKey,
-                            child: Container(
-                                width: double.maxFinite,
-                                padding: EdgeInsets.symmetric(vertical: 5.v),
-                                child: Column(children: [
-                                  Container(
-                                      width: 338.h,
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 25.h),
-                                      child: Text("msg_please_enter_your2".tr,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.center,
+                child: Form(
+                    key: _formKey,
+                    child: Container(
+                        width: double.maxFinite,
+                        padding: EdgeInsets.symmetric(vertical: 5.v),
+                        child: Column(children: [
+                          Container(
+                              width: 338.h,
+                              margin: EdgeInsets.symmetric(horizontal: 25.h),
+                              child: Text("msg_please_enter_your2".tr,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: CustomTextStyles
+                                      .bodyLargePoppinsOnPrimaryContainer_1)),
+                          SizedBox(height: 29.v),
+                          _buildContainer(context),
+                          Spacer(),
+                          CustomElevatedButton(
+                              text: "lbl_send".tr,
+                              margin: EdgeInsets.symmetric(horizontal: 18.h)),
+                          SizedBox(height: 16.v),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.only(top: 1.v),
+                                    child: Text("msg_already_have_an".tr,
+                                        style: theme.textTheme.bodyMedium)),
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 2.h, top: 1.v),
+                                    child: InkWell(
+                                      child: Text("lbl_sign_in".tr,
                                           style: CustomTextStyles
-                                              .bodyLargePoppinsOnPrimaryContainer_1)),
-                                  SizedBox(height: 29.v),
-                                  _buildContainer(context),
-                                  Spacer(),
-                                  CustomElevatedButton(
-                                      text: "lbl_send".tr,
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 18.h)),
-                                  SizedBox(height: 16.v),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                            padding: EdgeInsets.only(top: 1.v),
-                                            child: Text(
-                                                "msg_already_have_an".tr,
-                                                style: theme
-                                                    .textTheme.bodyMedium)),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 2.h, top: 1.v),
-                                            child: InkWell(
-                                              child: Text("lbl_sign_in".tr,
-                                                  style: CustomTextStyles
-                                                      .titleSmallPrimary
-                                                      .copyWith(
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .underline)),
-                                              onTap: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            LoginScreen()));
-                                              },
-                                            )),
-                                        CustomImageView(
-                                            imagePath: ImageConstant
-                                                .imgIconPrimary20x20,
-                                            height: 20.adaptSize,
-                                            width: 20.adaptSize,
-                                            margin: EdgeInsets.only(
-                                                left: 4.h, bottom: 2.v))
-                                      ]),
-                                  SizedBox(height: 66.v),
-                                  _buildSubContainer(context),
-                                  SizedBox(height: 15.v)
-                                ])))))),
+                                              .titleSmallPrimary
+                                              .copyWith(
+                                                  decoration: TextDecoration
+                                                      .underline)),
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginScreen()));
+                                      },
+                                    )),
+                                CustomImageView(
+                                    imagePath:
+                                        ImageConstant.imgIconPrimary20x20,
+                                    height: 20.adaptSize,
+                                    width: 20.adaptSize,
+                                    margin:
+                                        EdgeInsets.only(left: 4.h, bottom: 2.v))
+                              ]),
+                          SizedBox(height: 66.v),
+                          _buildSubContainer(context),
+                          SizedBox(height: 15.v)
+                        ])))),
             bottomNavigationBar: _buildButtonsContainer(context)));
   }
 
@@ -114,9 +103,8 @@ class SignUpScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildContainer(BuildContext context) {
     return SizedBox(
-        height: 171.v,
         width: double.maxFinite,
-        child: Stack(alignment: Alignment.bottomCenter, children: [
+        child: Column(children: [
           Align(
               alignment: Alignment.topCenter,
               child: Container(
@@ -156,9 +144,13 @@ class SignUpScreen extends StatelessWidget {
                               }
                               return null;
                             }),
+                        SizedBox(height: 18.v),
+                        Text("lbl_password".tr,
+                            style: theme.textTheme.titleMedium),
+                        SizedBox(height: 12.v),
                         CustomTextFormField(
                             controller: TextEditingController(),
-                            hintText: "msg_enter_your_email".tr,
+                            hintText: "msg_enter_your_password".tr,
                             hintStyle: theme.textTheme.bodyMedium!,
                             textInputAction: TextInputAction.done,
                             textInputType: TextInputType.emailAddress,
@@ -195,43 +187,39 @@ class SignUpScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildButtonsContainer(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(left: 58.h, right: 18.h, bottom: 58.v),
-        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-          Container(
-              height: 24.adaptSize,
-              width: 24.adaptSize,
-              margin: EdgeInsets.symmetric(vertical: 12.v),
-              decoration: AppDecoration.greyWhite
-                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgIconRed500,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  alignment: Alignment.center)),
-          Spacer(),
-          Container(
-              height: 48.v,
-              width: 104.h,
-              padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
-              decoration: AppDecoration.greyWhite
-                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgIconBlueA40001,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  alignment: Alignment.center)),
-          Container(
-              height: 48.v,
-              width: 104.h,
-              margin: EdgeInsets.only(left: 19.h),
-              padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
-              decoration: AppDecoration.greyWhite
-                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgIconOnerrorcontainer,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  alignment: Alignment.center))
-        ]));
+      padding: const EdgeInsets.only(bottom: 18),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        Container(
+            height: 48.v,
+            width: 104.h,
+            decoration: AppDecoration.greyWhite
+                .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
+            child: CustomImageView(
+                imagePath: ImageConstant.imgIconRed500,
+                height: 24.adaptSize,
+                width: 24.adaptSize,
+                alignment: Alignment.center)),
+        Container(
+            height: 48.v,
+            width: 104.h,
+            decoration: AppDecoration.greyWhite
+                .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
+            child: CustomImageView(
+                imagePath: ImageConstant.imgIconBlueA40001,
+                height: 24.adaptSize,
+                width: 24.adaptSize,
+                alignment: Alignment.center)),
+        Container(
+            height: 48.v,
+            width: 104.h,
+            decoration: AppDecoration.greyWhite
+                .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
+            child: CustomImageView(
+                imagePath: ImageConstant.imgIconOnerrorcontainer,
+                height: 24.adaptSize,
+                width: 24.adaptSize,
+                alignment: Alignment.center))
+      ]),
+    );
   }
 }
