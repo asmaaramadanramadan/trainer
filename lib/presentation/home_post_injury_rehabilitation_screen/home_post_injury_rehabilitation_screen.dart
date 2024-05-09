@@ -218,7 +218,6 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                   borderRadius: BorderRadiusStyle.customBorderTL22,
                 ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -232,11 +231,12 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                         style: CustomTextStyles.titleLargeLatoWhiteA700,
                       ),
                     ),
-                    SizedBox(height: 45.v),
+                    SizedBox(height: 15.v),
                     Row(
                       children: [
                         Text(
                           "lbl_see_more".tr,
+                          maxLines: 4,
                           style: CustomTextStyles.labelLargeLatoPrimary,
                         ),
                         CustomImageView(

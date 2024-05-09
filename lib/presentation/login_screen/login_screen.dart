@@ -204,7 +204,7 @@ class LoginScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    AfterRecentlySearchPageScreen()));
+                                    HomePostInjuryRehabilitationScreen()));
                       },
                     ),
                     SizedBox(height: 15.v),
