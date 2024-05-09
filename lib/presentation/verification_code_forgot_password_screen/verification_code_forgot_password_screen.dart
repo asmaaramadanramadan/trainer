@@ -43,7 +43,7 @@ class VerificationCodeForgotPasswordScreen extends StatelessWidget {
                             height: 16.adaptSize,
                             width: 16.adaptSize,
                             alignment: Alignment.bottomRight,
-                            margin: EdgeInsets.only(right: 48.h, bottom: 4.v),
+                            margin: EdgeInsets.only(right: 20.h, bottom: 4.v),
                             onTap: () {
                               onTapImgSolarPenOutline(context);
                             })

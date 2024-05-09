@@ -72,11 +72,10 @@ class ReportsEditHeightDialog extends StatelessWidget {
                 filled: false,
               ),
               Container(
-                width: 31.h,
                 margin: EdgeInsets.only(bottom: 3.v),
                 padding: EdgeInsets.symmetric(
-                  horizontal: 5.h,
-                  vertical: 7.v,
+                  horizontal: 6.h,
+                  vertical: 11.v,
                 ),
                 decoration: AppDecoration.outlineBlueGray,
                 child: Text(
@@ -89,7 +88,7 @@ class ReportsEditHeightDialog extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 3.v),
                 padding: EdgeInsets.symmetric(
                   horizontal: 5.h,
-                  vertical: 7.v,
+                  vertical: 11.v,
                 ),
                 decoration: AppDecoration.fillBlueA400,
                 child: Text(
