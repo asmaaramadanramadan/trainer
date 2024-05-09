@@ -127,6 +127,6 @@ class AppRoutes {
         notificationScreen: (context) => NotificationScreen(),
         settingScreen: (context) => SettingScreen(),
         appNavigationScreen: (context) => AppNavigationScreen(),
-        initialRoute: (context) => SignUpScreen()
+        initialRoute: (context) => DetailsScreen()
       };
 }

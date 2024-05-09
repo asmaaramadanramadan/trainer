@@ -194,11 +194,9 @@ class DetailsScreen extends StatelessWidget {
                         thickness: 1.v,
                         color: theme.colorScheme.primary))))
       ]),
-      Padding(
-          padding: EdgeInsets.only(left: 15.h, bottom: 22.v),
-          child: _buildStepText(context,
-              clappingBothHands: "lbl_rest_at_the_toe".tr,
-              description: "msg_the_basis_of_this".tr))
+      _buildStepText(context,
+          clappingBothHands: "lbl_rest_at_the_toe".tr,
+          description: "msg_the_basis_of_this".tr)
     ]);
   }
 
@@ -208,24 +206,19 @@ class DetailsScreen extends StatelessWidget {
         padding: EdgeInsets.only(right: 13.h),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Column(children: [
-            SizedBox(
-                width: 47.h,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("lbl_03".tr,
-                          style: CustomTextStyles.bodyMediumPrimary),
-                      Container(
-                          padding: EdgeInsets.all(3.h),
-                          decoration: AppDecoration.outlinePrimary2.copyWith(
-                              borderRadius: BorderRadiusStyle.roundedBorder8),
-                          child: Container(
-                              height: 10.adaptSize,
-                              width: 10.adaptSize,
-                              decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary,
-                                  borderRadius: BorderRadius.circular(5.h))))
-                    ])),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Text("lbl_03".tr, style: CustomTextStyles.bodyMediumPrimary),
+              Container(
+                  padding: EdgeInsets.all(3.h),
+                  decoration: AppDecoration.outlinePrimary2
+                      .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
+                  child: Container(
+                      height: 10.adaptSize,
+                      width: 10.adaptSize,
+                      decoration: BoxDecoration(
+                          color: theme.colorScheme.primary,
+                          borderRadius: BorderRadius.circular(5.h))))
+            ]),
             SizedBox(height: 4.v),
             Align(
                 alignment: Alignment.centerRight,
@@ -259,7 +252,9 @@ class DetailsScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildStep4(BuildContext context) {
-    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
       Padding(
           padding: EdgeInsets.only(bottom: 77.v),
           child: Text("lbl_04".tr, style: CustomTextStyles.bodyMediumPrimary)),
@@ -274,11 +269,9 @@ class DetailsScreen extends StatelessWidget {
               decoration: BoxDecoration(
                   color: theme.colorScheme.primary,
                   borderRadius: BorderRadius.circular(5.h)))),
-      Padding(
-          padding: EdgeInsets.only(left: 15.h),
-          child: _buildStepText(context,
-              clappingBothHands: "msg_clapping_both_hands".tr,
-              description: "msg_this_cannot_be_taken".tr))
+      _buildStepText(context,
+          clappingBothHands: "msg_clapping_both_hands".tr,
+          description: "msg_this_cannot_be_taken".tr)
     ]);
   }
 

@@ -34,9 +34,13 @@ class CameraScreen extends StatelessWidget {
                         children: [
                           Padding(
                               padding: EdgeInsets.only(bottom: 639.v),
-                              child: Text("lbl_sets".tr,
-                                  style: CustomTextStyles
-                                      .titleLargeInterGray5001)),
+                              child: Column(
+                                children: [
+                                  Text("lbl_sets".tr,
+                                      style: CustomTextStyles
+                                          .titleLargeInterGray5001),
+                                ],
+                              )),
                           Padding(
                               padding:
                                   EdgeInsets.only(right: 1.h, bottom: 638.v),
@@ -51,6 +55,7 @@ class CameraScreen extends StatelessWidget {
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
         leadingWidth: 52.h,
+        height: 100,
         leading: AppbarLeadingImage(
             imagePath: ImageConstant.imgFiRrAngleLeftGray5001,
             margin: EdgeInsets.only(left: 32.h, top: 10.v, bottom: 25.v),
@@ -58,11 +63,11 @@ class CameraScreen extends StatelessWidget {
               onTapFiRrAngleLeft(context);
             }),
         title: AppbarSubtitleSeven(
-            text: "lbl_1_2".tr, margin: EdgeInsets.only(left: 74.h)),
+            text: "lbl_1_2".tr, margin: EdgeInsets.only(left: 74.h,top: 22)),
         actions: [
           AppbarSubtitleSix(
               text: "lbl_6_12".tr,
-              margin: EdgeInsets.fromLTRB(47.h, 19.v, 123.h, 11.v))
+              margin: EdgeInsets.fromLTRB(47.h, 30.v, 123.h, 11.v))
         ]);
   }
 
