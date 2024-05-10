@@ -4,6 +4,7 @@ import 'package:fty/core/utils/validation_functions.dart';
 import 'package:fty/widgets/custom_text_form_field.dart';
 import 'package:fty/widgets/custom_checkbox_button.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
+import 'package:get/route_manager.dart';
 import '../after_recently_search_page_screen/after_recently_search_page_screen.dart';
 import '../app_navigation_screen/app_navigation_screen.dart';
 import '../application_type_active_screen/application_type_active_screen.dart';
@@ -33,6 +34,7 @@ import '../scan_page/scan_page.dart';
 import '../search_result_not_found_one_screen/search_result_not_found_one_screen.dart';
 import '../search_screen/search_screen.dart';
 import '../setting_screen/setting_screen.dart';
+import '../sign_up_screen/sign_up_screen.dart';
 import '../verification_code_forgot_password_screen/verification_code_forgot_password_screen.dart';
 import '../when_end_day_clicked_screen/when_end_day_clicked_screen.dart';
 import '../your_height_screen/your_height_screen.dart';
@@ -132,6 +134,7 @@ class LoginScreen extends StatelessWidget {
                           }
                           return null;
                         }),
+
                     SizedBox(height: 16.v),
                     Align(
                         alignment: Alignment.centerLeft,
@@ -211,12 +214,17 @@ class LoginScreen extends StatelessWidget {
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Text("msg_don_t_have_an_account".tr,
                           style: theme.textTheme.bodyMedium),
-                      Padding(
-                          padding: EdgeInsets.only(left: 2.h),
-                          child: Text("lbl_sign_up".tr,
-                              style: CustomTextStyles.titleSmallPrimary
-                                  .copyWith(
-                                      decoration: TextDecoration.underline))),
+                      InkWell(
+                        onTap: (){
+                          Get.to(SignUpScreen());
+                        },
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 2.h),
+                            child: Text("lbl_sign_up".tr,
+                                style: CustomTextStyles.titleSmallPrimary
+                                    .copyWith(
+                                        decoration: TextDecoration.underline))),
+                      ),
                       CustomImageView(
                           imagePath: ImageConstant.imgIconPrimary20x20,
                           height: 20.adaptSize,
@@ -249,12 +257,13 @@ class LoginScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildButtonsContainer(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(left: 58.h, right: 18.h, bottom: 67.v),
-        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        padding: EdgeInsets.only(bottom: 67.v),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Container(
-              height: 24.adaptSize,
-              width: 24.adaptSize,
-              margin: EdgeInsets.symmetric(vertical: 12.v),
+              height: 48.v,
+              width: 104.h,
+
+              padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
               decoration: AppDecoration.greyWhite
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
               child: CustomImageView(
@@ -262,10 +271,10 @@ class LoginScreen extends StatelessWidget {
                   height: 24.adaptSize,
                   width: 24.adaptSize,
                   alignment: Alignment.center)),
-          Spacer(),
           Container(
               height: 48.v,
               width: 104.h,
+
               padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
               decoration: AppDecoration.greyWhite
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
@@ -277,7 +286,7 @@ class LoginScreen extends StatelessWidget {
           Container(
               height: 48.v,
               width: 104.h,
-              margin: EdgeInsets.only(left: 19.h),
+
               padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
               decoration: AppDecoration.greyWhite
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),

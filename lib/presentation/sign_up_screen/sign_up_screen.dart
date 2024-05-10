@@ -20,67 +20,65 @@ class SignUpScreen extends StatelessWidget {
         child: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: _buildAppBar(context),
-            body: SizedBox(
-                width: SizeUtils.width,
-                child: Form(
-                    key: _formKey,
-                    child: Container(
-                        width: double.maxFinite,
-                        padding: EdgeInsets.symmetric(vertical: 5.v),
-                        child: Column(children: [
-                          Container(
-                              width: 338.h,
-                              margin: EdgeInsets.symmetric(horizontal: 25.h),
-                              child: Text("msg_please_enter_your2".tr,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: CustomTextStyles
-                                      .bodyLargePoppinsOnPrimaryContainer_1)),
-                          SizedBox(height: 29.v),
-                          _buildContainer(context),
-                          Spacer(),
-                          CustomElevatedButton(
-                              text: "lbl_send".tr,
-                              margin: EdgeInsets.symmetric(horizontal: 18.h)),
-                          SizedBox(height: 16.v),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                    padding: EdgeInsets.only(top: 1.v),
-                                    child: Text("msg_already_have_an".tr,
-                                        style: theme.textTheme.bodyMedium)),
-                                Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 2.h, top: 1.v),
-                                    child: InkWell(
-                                      child: Text("lbl_sign_in".tr,
-                                          style: CustomTextStyles
-                                              .titleSmallPrimary
-                                              .copyWith(
-                                                  decoration: TextDecoration
-                                                      .underline)),
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LoginScreen()));
-                                      },
-                                    )),
-                                CustomImageView(
-                                    imagePath:
-                                        ImageConstant.imgIconPrimary20x20,
-                                    height: 20.adaptSize,
-                                    width: 20.adaptSize,
-                                    margin:
-                                        EdgeInsets.only(left: 4.h, bottom: 2.v))
-                              ]),
-                          SizedBox(height: 66.v),
-                          _buildSubContainer(context),
-                          SizedBox(height: 15.v)
-                        ])))),
+            body: Form(
+                key: _formKey,
+                child: Container(
+                    width: double.maxFinite,
+                    padding: EdgeInsets.symmetric(vertical: 5.v),
+                    child: SingleChildScrollView(
+                      child: Column(children: [
+                        Container(
+                            width: 338.h,
+                            margin: EdgeInsets.symmetric(horizontal: 25.h),
+                            child: Text("msg_please_enter_your2".tr,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: CustomTextStyles
+                                    .bodyLargePoppinsOnPrimaryContainer_1)),
+                        SizedBox(height: 29.v),
+                        _buildContainer(context),
+
+                        CustomElevatedButton(
+                            text: "lbl_send".tr,
+                            margin: EdgeInsets.symmetric(horizontal: 18.h)),
+                        SizedBox(height: 16.v),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(top: 1.v),
+                                  child: Text("msg_already_have_an".tr,
+                                      style: theme.textTheme.bodyMedium)),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 2.h, top: 1.v),
+                                  child: InkWell(
+                                    child: Text("lbl_sign_in".tr,
+                                        style: CustomTextStyles
+                                            .titleSmallPrimary
+                                            .copyWith(
+                                            decoration:
+                                            TextDecoration.underline)),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginScreen()));
+                                    },
+                                  )),
+                              CustomImageView(
+                                  imagePath: ImageConstant.imgIconPrimary20x20,
+                                  height: 20.adaptSize,
+                                  width: 20.adaptSize,
+                                  margin:
+                                  EdgeInsets.only(left: 4.h, bottom: 2.v))
+                            ]),
+                        SizedBox(height: 66.v),
+                        _buildSubContainer(context),
+                        SizedBox(height: 15.v)
+                      ]),
+                    ))),
             bottomNavigationBar: _buildButtonsContainer(context)));
   }
 
@@ -102,67 +100,111 @@ class SignUpScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildContainer(BuildContext context) {
-    return SizedBox(
-        width: double.maxFinite,
-        child: Column(children: [
-          Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                  height: 80.adaptSize,
-                  width: 80.adaptSize,
-                  padding: EdgeInsets.all(20.h),
-                  decoration: AppDecoration.outlinePrimary
-                      .copyWith(borderRadius: BorderRadiusStyle.circleBorder40),
-                  child: CustomImageView(
-                      imagePath: ImageConstant.imgIconPrimary40x40,
-                      height: 40.adaptSize,
-                      width: 40.adaptSize,
-                      alignment: Alignment.center))),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 18.h),
-                  decoration: AppDecoration.outlinePrimary3,
-                  child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 49.v),
-                        Text("lbl_email".tr,
-                            style: theme.textTheme.titleMedium),
-                        SizedBox(height: 8.v),
-                        CustomTextFormField(
-                            controller: TextEditingController(),
-                            hintText: "msg_enter_your_email".tr,
-                            hintStyle: theme.textTheme.bodyMedium!,
-                            textInputAction: TextInputAction.done,
-                            textInputType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value == null ||
-                                  (!isValidEmail(value, isRequired: true))) {
-                                return "err_msg_please_enter_valid_email".tr;
-                              }
-                              return null;
-                            }),
-                        SizedBox(height: 18.v),
-                        Text("lbl_password".tr,
-                            style: theme.textTheme.titleMedium),
-                        SizedBox(height: 12.v),
-                        CustomTextFormField(
-                            controller: TextEditingController(),
-                            hintText: "msg_enter_your_password".tr,
-                            hintStyle: theme.textTheme.bodyMedium!,
-                            textInputAction: TextInputAction.done,
-                            textInputType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value == null ||
-                                  (!isValidEmail(value, isRequired: true))) {
-                                return "err_msg_please_enter_valid_email".tr;
-                              }
-                              return null;
-                            }),
-                      ])))
-        ]));
+    return Column(children: [
+      Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+              height: 80.adaptSize,
+              width: 80.adaptSize,
+              padding: EdgeInsets.all(20.h),
+              decoration: AppDecoration.outlinePrimary
+                  .copyWith(borderRadius: BorderRadiusStyle.circleBorder40),
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgIconPrimary40x40,
+                  height: 40.adaptSize,
+                  width: 40.adaptSize,
+                  alignment: Alignment.center))),
+      Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 18.h),
+              decoration: AppDecoration.outlinePrimary3,
+              child: SingleChildScrollView(
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 49.v),
+                      Text("lbl_email".tr, style: theme.textTheme.titleMedium),
+                      SizedBox(height: 8.v),
+                      CustomTextFormField(
+                          controller: TextEditingController(),
+                          hintText: "msg_enter_your_email".tr,
+                          hintStyle: theme.textTheme.bodyMedium!,
+                          textInputAction: TextInputAction.done,
+                          textInputType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null ||
+                                (!isValidEmail(value, isRequired: true))) {
+                              return "err_msg_please_enter_valid_email".tr;
+                            }
+                            return null;
+                          }),
+                      Text("lbl_email".tr, style: theme.textTheme.titleMedium),
+                      SizedBox(height: 8.v),
+                      CustomTextFormField(
+                          controller: TextEditingController(),
+                          hintText: "msg_enter_your_email".tr,
+                          hintStyle: theme.textTheme.bodyMedium!,
+                          textInputAction: TextInputAction.done,
+                          textInputType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null ||
+                                (!isValidEmail(value, isRequired: true))) {
+                              return "err_msg_please_enter_valid_email".tr;
+                            }
+                            return null;
+                          }),
+                      Text("lbl_email".tr, style: theme.textTheme.titleMedium),
+                      SizedBox(height: 8.v),
+                      CustomTextFormField(
+                          controller: TextEditingController(),
+                          hintText: "msg_enter_your_email".tr,
+                          hintStyle: theme.textTheme.bodyMedium!,
+                          textInputAction: TextInputAction.done,
+                          textInputType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null ||
+                                (!isValidEmail(value, isRequired: true))) {
+                              return "err_msg_please_enter_valid_email".tr;
+                            }
+                            return null;
+                          }),
+                      Text("lbl_email".tr, style: theme.textTheme.titleMedium),
+                      SizedBox(height: 8.v),
+                      CustomTextFormField(
+                          controller: TextEditingController(),
+                          hintText: "msg_enter_your_email".tr,
+                          hintStyle: theme.textTheme.bodyMedium!,
+                          textInputAction: TextInputAction.done,
+                          textInputType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null ||
+                                (!isValidEmail(value, isRequired: true))) {
+                              return "err_msg_please_enter_valid_email".tr;
+                            }
+                            return null;
+                          }),
+                      SizedBox(height: 18.v),
+                      Text("lbl_password".tr,
+                          style: theme.textTheme.titleMedium),
+                      SizedBox(height: 12.v),
+                      CustomTextFormField(
+                          controller: TextEditingController(),
+                          hintText: "msg_enter_your_password".tr,
+                          hintStyle: theme.textTheme.bodyMedium!,
+                          textInputAction: TextInputAction.done,
+                          textInputType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null ||
+                                (!isValidEmail(value, isRequired: true))) {
+                              return "err_msg_please_enter_valid_email".tr;
+                            }
+                            return null;
+                          }),
+                    ]),
+              )))
+    ]);
   }
 
   /// Section Widget

@@ -63,7 +63,7 @@ class CameraScreen extends StatelessWidget {
               onTapFiRrAngleLeft(context);
             }),
         title: AppbarSubtitleSeven(
-            text: "lbl_1_2".tr, margin: EdgeInsets.only(left: 74.h,top: 22)),
+            text: "lbl_1_2".tr, margin: EdgeInsets.only(left: 74.h, top: 22)),
         actions: [
           AppbarSubtitleSix(
               text: "lbl_6_12".tr,

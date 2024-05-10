@@ -19,15 +19,12 @@ class YourHeightScreen extends StatelessWidget {
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(horizontal: 18.h),
                 child: Column(children: [
-                  Container(
-                      width: 331.h,
-                      margin: EdgeInsets.only(left: 10.h, right: 11.h),
-                      child: Text("msg_a_coach_will_assign".tr,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: CustomTextStyles
-                              .bodyLargePoppinsOnPrimaryContainer_1)),
+                  Text("msg_a_coach_will_assign".tr,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: CustomTextStyles
+                          .bodyLargePoppinsOnPrimaryContainer_1),
                   SizedBox(height: 13.v),
                   _buildSubContainer(context),
                   SizedBox(height: 10.v),
@@ -38,29 +35,7 @@ class YourHeightScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text("msg_what_s_your_height".tr,
                           style: theme.textTheme.titleMedium)),
-                  SizedBox(height: 5.v),
-                  SizedBox(
-                      height: 135.v,
-                      width: 74.h,
-                      child: Stack(alignment: Alignment.topRight, children: [
-                        Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text("lbl_166".tr,
-                                style: theme.textTheme.displayMedium)),
-                        Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                                padding: EdgeInsets.only(top: 32.v, right: 3.h),
-                                child: Text("lbl_165".tr,
-                                    style: theme.textTheme.displaySmall))),
-                        Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                                padding: EdgeInsets.only(right: 10.h),
-                                child: Text("lbl_164".tr,
-                                    style: theme.textTheme.headlineMedium)))
-                      ])),
-                  SizedBox(height: 1.v),
+                  SizedBox(height: 22.v),
                   SizedBox(
                       width: 156.h,
                       child: Divider(color: theme.colorScheme.primary)),
@@ -88,11 +63,6 @@ class YourHeightScreen extends StatelessWidget {
                             child: Text("lbl_167".tr,
                                 style: theme.textTheme.displayLarge))
                       ])),
-                  SizedBox(height: 4.v),
-                  Text("lbl_168".tr, style: theme.textTheme.displayMedium),
-                  Text("lbl_169".tr, style: theme.textTheme.displaySmall),
-                  SizedBox(height: 5.v),
-                  Text("lbl_170".tr, style: theme.textTheme.headlineMedium)
                 ])),
             bottomNavigationBar: _buildNext(context)));
   }

@@ -93,10 +93,10 @@ class ApplicationTypeScreen extends StatelessWidget {
                     height: 18.adaptSize,
                     width: 18.adaptSize,
                     alignment: Alignment.center)),
-            Padding(
-                padding: EdgeInsets.only(top: 7.v),
-                child: Text("lbl_information".tr,
-                    style: theme.textTheme.bodySmall))
+            // Padding(
+            //     padding: EdgeInsets.only(top: 7.v),
+            //     child: Text("lbl_information".tr,
+            //         style: theme.textTheme.bodySmall))
           ])),
           StepperData(
               iconWidget: Column(children: [
@@ -111,28 +111,29 @@ class ApplicationTypeScreen extends StatelessWidget {
                     height: 18.adaptSize,
                     width: 18.adaptSize,
                     alignment: Alignment.center)),
-            Padding(
-                padding: EdgeInsets.only(top: 9.v),
-                child: Text("lbl_your_height".tr,
-                    style: theme.textTheme.bodySmall))
+            // Padding(
+            //     padding: EdgeInsets.only(top: 9.v),
+            //     child: Text("lbl_your_height".tr,
+            //         style: theme.textTheme.bodySmall))
           ])),
           StepperData(
               iconWidget: Column(children: [
             Container(
-                height: 34.adaptSize,
-                width: 34.adaptSize,
-                padding: EdgeInsets.all(7.h),
-                decoration: AppDecoration.outlinePrimary
-                    .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
-                child: CustomImageView(
-                    imagePath: ImageConstant.imgGuidancePersonalTrainingPrimary,
-                    height: 18.adaptSize,
-                    width: 18.adaptSize,
-                    alignment: Alignment.center)),
-            Padding(
-                padding: EdgeInsets.only(top: 9.v),
-                child: Text("msg_application_type".tr,
-                    style: CustomTextStyles.bodySmallOnErrorContainer))
+              height: 34.adaptSize,
+              width: 34.adaptSize,
+              padding: EdgeInsets.all(7.h),
+              decoration: AppDecoration.outlinePrimary
+                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgGuidancePersonalTrainingPrimary,
+                  height: 18.adaptSize,
+                  width: 18.adaptSize,
+                  alignment: Alignment.center),
+            ),
+            // Padding(
+            //     padding: EdgeInsets.only(top: 9.v),
+            //     child: Text("msg_application_type".tr,
+            //         style: CustomTextStyles.bodySmallOnErrorContainer))
           ]))
         ]);
   }

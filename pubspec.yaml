@@ -22,14 +22,18 @@ dependencies:
   sms_autofill: ^2.3.0
   easy_date_timeline: ^1.0.2
   calendar_date_picker2: ^0.5.3
+  get:
+  smooth_page_indicator:
+  lottie:
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
 flutter: 
   uses-material-design: true
-  assets: 
+  assets:
     - assets/
     - assets/images/
+    - assets/onboarding/
   fonts: 
     - family: Montserrat
       fonts: 

@@ -107,6 +107,7 @@ class MyAccountPage extends StatelessWidget {
                   14.h,
                 ),
               ),
+              child: Icon(Icons.arrow_back),
             ),
             AppbarSubtitleFour(
               text: "lbl_account".tr,

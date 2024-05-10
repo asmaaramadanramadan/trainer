@@ -128,10 +128,9 @@ class InformationScreen extends StatelessWidget {
                     height: 18.adaptSize,
                     width: 18.adaptSize,
                     alignment: Alignment.center)),
-            Padding(
-                padding: EdgeInsets.only(top: 7.v),
-                child: Text("lbl_information".tr,
-                    style: CustomTextStyles.bodySmallOnErrorContainer))
+            // Text("lbl_information".tr,
+            //     maxLines: 2,
+            //     style: CustomTextStyles.bodySmallOnErrorContainer)
           ])),
           StepperData(
               iconWidget: Column(children: [
@@ -146,28 +145,29 @@ class InformationScreen extends StatelessWidget {
                     height: 18.adaptSize,
                     width: 18.adaptSize,
                     alignment: Alignment.center)),
-            Padding(
-                padding: EdgeInsets.only(top: 9.v),
-                child: Text("lbl_your_height".tr,
-                    style: theme.textTheme.bodySmall))
+            // Padding(
+            //     padding: EdgeInsets.only(top: 9.v),
+            //     child: Text("lbl_your_height".tr,
+            //         style: theme.textTheme.bodySmall))
           ])),
           StepperData(
               iconWidget: Column(children: [
             Container(
-                height: 34.adaptSize,
-                width: 34.adaptSize,
-                padding: EdgeInsets.all(7.h),
-                decoration: AppDecoration.outlinePrimary
-                    .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
-                child: CustomImageView(
-                    imagePath: ImageConstant.imgGuidancePersonalTraining,
-                    height: 18.adaptSize,
-                    width: 18.adaptSize,
-                    alignment: Alignment.center)),
-            Padding(
-                padding: EdgeInsets.only(top: 9.v),
-                child: Text("msg_application_type".tr,
-                    style: theme.textTheme.bodySmall))
+              height: 34.adaptSize,
+              width: 34.adaptSize,
+              padding: EdgeInsets.all(7.h),
+              decoration: AppDecoration.outlinePrimary
+                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgGuidancePersonalTraining,
+                  height: 18.adaptSize,
+                  width: 18.adaptSize,
+                  alignment: Alignment.center),
+            ),
+            // Padding(
+            //     padding: EdgeInsets.only(top: 9.v),
+            //     child: Text("msg_application_type".tr,
+            //         style: theme.textTheme.bodySmall))
           ]))
         ]);
   }
