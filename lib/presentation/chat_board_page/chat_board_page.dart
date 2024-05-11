@@ -21,146 +21,149 @@ class ChatBoardPage extends StatelessWidget {
         body: Container(
           width: double.maxFinite,
           decoration: AppDecoration.fillWhiteA,
-          child: Column(
-            children: [
-              SizedBox(height: 12.v),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 49.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomImageView(
-                        imagePath: ImageConstant.imgUserGray40001,
-                        height: 20.adaptSize,
-                        width: 20.adaptSize,
-                        margin: EdgeInsets.only(bottom: 39.v),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 6.h),
-                          child: CustomTextFormField(
-                            controller: TextEditingController(),
-                            hintText: "lbl_hello_there".tr,
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20.h,
-                              vertical: 19.v,
-                            ),
-                            borderDecoration:
-                                TextFormFieldStyleHelper.fillPrimary,
-                            fillColor: theme.colorScheme.primary,
-                          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 12.v),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 49.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomImageView(
+                          imagePath: ImageConstant.imgUserGray40001,
+                          height: 20.adaptSize,
+                          width: 20.adaptSize,
+                          margin: EdgeInsets.only(bottom: 39.v),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 25.v),
-              Padding(
-                padding: EdgeInsets.only(right: 11.h),
-                child: _buildDescription(
-                  context,
-                  description: "msg_hello_there_how".tr,
-                ),
-              ),
-              SizedBox(height: 25.v),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 49.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomImageView(
-                        imagePath: ImageConstant.imgUserGray40001,
-                        height: 20.adaptSize,
-                        width: 20.adaptSize,
-                        margin: EdgeInsets.only(bottom: 39.v),
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 6.h),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20.h,
-                            vertical: 18.v,
-                          ),
-                          decoration: AppDecoration.fillPrimary.copyWith(
-                            borderRadius: BorderRadiusStyle.customBorderTL191,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(height: 2.v),
-                              Text(
-                                "msg_show_me_what_can".tr,
-                                style: CustomTextStyles.bodyLargeInterWhiteA700,
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 6.h),
+                            child: CustomTextFormField(
+                              controller: TextEditingController(),
+                              hintText: "lbl_hello_there".tr,
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 20.h,
+                                vertical: 19.v,
                               ),
-                            ],
+                              borderDecoration:
+                                  TextFormFieldStyleHelper.fillPrimary,
+                              fillColor: theme.colorScheme.primary,
+                            ),
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 25.v),
+                Padding(
+                  padding: EdgeInsets.only(right: 11.h),
+                  child: _buildDescription(
+                    context,
+                    description: "msg_hello_there_how".tr,
+                  ),
+                ),
+                SizedBox(height: 25.v),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 49.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomImageView(
+                          imagePath: ImageConstant.imgUserGray40001,
+                          height: 20.adaptSize,
+                          width: 20.adaptSize,
+                          margin: EdgeInsets.only(bottom: 39.v),
+                        ),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 6.h),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20.h,
+                              vertical: 18.v,
+                            ),
+                            decoration: AppDecoration.fillPrimary.copyWith(
+                              borderRadius: BorderRadiusStyle.customBorderTL191,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(height: 2.v),
+                                Text(
+                                  "msg_show_me_what_can".tr,
+                                  style:
+                                      CustomTextStyles.bodyLargeInterWhiteA700,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 25.v),
+                Padding(
+                  padding: EdgeInsets.only(right: 11.h),
+                  child: _buildDescription(
+                    context,
+                    description: "msg_as_an_ai_language".tr,
+                  ),
+                ),
+                SizedBox(height: 40.v),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 3.h,
+                    vertical: 12.v,
+                  ),
+                  decoration: AppDecoration.outlineGray30003.copyWith(
+                    borderRadius: BorderRadiusStyle.roundedBorder8,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 18.adaptSize,
+                        width: 18.adaptSize,
+                        margin: EdgeInsets.only(
+                          left: 15.h,
+                          top: 5.v,
+                          bottom: 4.v,
+                        ),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary,
+                          borderRadius: BorderRadius.circular(
+                            2.h,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 15.h,
+                          top: 5.v,
+                        ),
+                        child: Text(
+                          "msg_stop_generating".tr,
+                          style: CustomTextStyles.titleMediumInterBlack90001,
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 25.v),
-              Padding(
-                padding: EdgeInsets.only(right: 11.h),
-                child: _buildDescription(
-                  context,
-                  description: "msg_as_an_ai_language".tr,
-                ),
-              ),
-              SizedBox(height: 40.v),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 3.h,
-                  vertical: 12.v,
-                ),
-                decoration: AppDecoration.outlineGray30003.copyWith(
-                  borderRadius: BorderRadiusStyle.roundedBorder8,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      height: 18.adaptSize,
-                      width: 18.adaptSize,
-                      margin: EdgeInsets.only(
-                        left: 15.h,
-                        top: 5.v,
-                        bottom: 4.v,
-                      ),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(
-                          2.h,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 15.h,
-                        top: 5.v,
-                      ),
-                      child: Text(
-                        "msg_stop_generating".tr,
-                        style: CustomTextStyles.titleMediumInterBlack90001,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16.v),
-              _buildTypeSection(context),
-            ],
+                SizedBox(height: 16.v),
+                _buildTypeSection(context),
+              ],
+            ),
           ),
         ),
       ),

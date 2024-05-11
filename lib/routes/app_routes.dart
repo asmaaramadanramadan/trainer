@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../presentation/home_navigate/home_navigate.dart';
 import '../presentation/my_account_page/my_account_page.dart';
 import '../presentation/onboarding_screen/onboarding_screen.dart';
 import '../presentation/scan_one_bottomsheet/scan_one_bottomsheet.dart';
@@ -6,7 +7,6 @@ import '../presentation/scan_page/scan_page.dart';
 import '../presentation/search_result_not_found_one_screen/search_result_not_found_one_screen.dart';
 import '../presentation/search_screen/search_screen.dart';
 import '../presentation/after_recently_search_page_screen/after_recently_search_page_screen.dart';
-import '../presentation/home_regular_container_screen/home_regular_container_screen.dart';
 import '../presentation/information_screen/information_screen.dart';
 import '../presentation/your_height_screen/your_height_screen.dart';
 import '../presentation/application_type_screen/application_type_screen.dart';
@@ -106,7 +106,7 @@ class AppRoutes {
         searchScreen: (context) => SearchScreen(),
         afterRecentlySearchPageScreen: (context) =>
             AfterRecentlySearchPageScreen(),
-        homeRegularContainerScreen: (context) => HomeRegularContainerScreen(),
+        homeRegularContainerScreen: (context) => HomePostInjuryRehabilitationScreen(),
         informationScreen: (context) => InformationScreen(),
         yourHeightScreen: (context) => YourHeightScreen(),
         applicationTypeScreen: (context) => ApplicationTypeScreen(),

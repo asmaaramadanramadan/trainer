@@ -10,6 +10,7 @@ import 'package:fty/widgets/app_bar/appbar_subtitle_ten.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_iconbutton.dart';
 import 'package:fty/widgets/custom_search_view.dart';
+import 'package:get/route_manager.dart';
 import 'widgets/homepostinjuryrehabilitation_item_widget.dart';
 import 'models/homepostinjuryrehabilitation_item_model.dart';
 import 'models/home_post_injury_rehabilitation_model.dart';
@@ -95,7 +96,6 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
       ),
     );
   }
@@ -337,52 +337,5 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
-    return CustomBottomBar(
-      onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(
-            navigatorKey.currentContext!, getCurrentRoute(type));
-      },
-    );
-  }
 
-  ///Handling route based on bottom click actions
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.Home:
-        return AppRoutes.homeRegularPage;
-      case BottomBarEnum.Report:
-        return AppRoutes.reportsPage;
-      case BottomBarEnum.Chatbot:
-        return AppRoutes.chatBoardPage;
-      case BottomBarEnum.Scan:
-        return AppRoutes.scanPage;
-      case BottomBarEnum.Account:
-        return AppRoutes.myAccountPage;
-      default:
-        return "/";
-    }
-  }
-
-  ///Handling page based on route
-  Widget getCurrentPage(
-    BuildContext context,
-    String currentRoute,
-  ) {
-    switch (currentRoute) {
-      case AppRoutes.homeRegularPage:
-        return HomeRegularPage();
-      case AppRoutes.reportsPage:
-        return ReportsPage();
-      case AppRoutes.chatBoardPage:
-        return ChatBoardPage();
-      case AppRoutes.scanPage:
-        return ScanPage();
-      case AppRoutes.myAccountPage:
-        return MyAccountPage();
-      default:
-        return DefaultWidget();
-    }
-  }
 }

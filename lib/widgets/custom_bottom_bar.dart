@@ -4,7 +4,7 @@ import 'package:fty/core/app_export.dart';
 class CustomBottomBar extends StatefulWidget {
   CustomBottomBar({this.onChanged});
 
-  Function(BottomBarEnum)? onChanged;
+  Function(BottomBarEnum,int value)? onChanged;
 
   @override
   CustomBottomBarState createState() => CustomBottomBarState();
@@ -125,7 +125,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         }),
         onTap: (index) {
           selectedIndex = index;
-          widget.onChanged?.call(bottomMenuList[index].type);
+          widget.onChanged?.call(bottomMenuList[index].type,index);
           setState(() {});
         },
       ),

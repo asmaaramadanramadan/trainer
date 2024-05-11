@@ -2,43 +2,11 @@ import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle.dart';
 import 'package:fty/core/utils/validation_functions.dart';
 import 'package:fty/widgets/custom_text_form_field.dart';
-import 'package:fty/widgets/custom_checkbox_button.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
 import 'package:get/route_manager.dart';
-import '../after_recently_search_page_screen/after_recently_search_page_screen.dart';
-import '../app_navigation_screen/app_navigation_screen.dart';
-import '../application_type_active_screen/application_type_active_screen.dart';
-import '../application_type_screen/application_type_screen.dart';
-import '../camera_screen/camera_screen.dart';
-import '../chat_board_page/chat_board_page.dart';
-import '../congratulation_of_account_screen/congratulation_of_account_screen.dart';
-import '../create_a_new_password_screen/create_a_new_password_screen.dart';
-import '../daily_calorie_dialog/daily_calorie_dialog.dart';
-import '../details_screen/details_screen.dart';
-import '../done_dialog/done_dialog.dart';
-import '../exercise_screen/exercise_screen.dart';
-import '../forgot_password_screen/forgot_password_screen.dart';
-import '../history_screen/history_screen.dart';
+import '../home_navigate/home_navigate.dart';
 import '../home_post_injury_rehabilitation_screen/home_post_injury_rehabilitation_screen.dart';
-import '../home_regular_container_screen/home_regular_container_screen.dart';
-import '../home_regular_page/home_regular_page.dart';
-import '../information_screen/information_screen.dart';
-import '../muscules_choices_screen/muscules_choices_screen.dart';
-import '../my_account_page/my_account_page.dart';
-import '../notification_screen/notification_screen.dart';
-import '../reports_edit_height_dialog/reports_edit_height_dialog.dart';
-import '../reports_edit_weight_dialog/reports_edit_weight_dialog.dart';
-import '../reports_page/reports_page.dart';
-import '../scan_one_bottomsheet/scan_one_bottomsheet.dart';
-import '../scan_page/scan_page.dart';
-import '../search_result_not_found_one_screen/search_result_not_found_one_screen.dart';
-import '../search_screen/search_screen.dart';
-import '../setting_screen/setting_screen.dart';
 import '../sign_up_screen/sign_up_screen.dart';
-import '../verification_code_forgot_password_screen/verification_code_forgot_password_screen.dart';
-import '../when_end_day_clicked_screen/when_end_day_clicked_screen.dart';
-import '../your_height_screen/your_height_screen.dart';
-import 'models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
 import 'bloc/login_bloc.dart';
@@ -134,7 +102,6 @@ class LoginScreen extends StatelessWidget {
                           }
                           return null;
                         }),
-
                     SizedBox(height: 16.v),
                     Align(
                         alignment: Alignment.centerLeft,
@@ -206,8 +173,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    HomePostInjuryRehabilitationScreen()));
+                                builder: (context) => HomeNavigate()));
                       },
                     ),
                     SizedBox(height: 15.v),
@@ -215,7 +181,7 @@ class LoginScreen extends StatelessWidget {
                       Text("msg_don_t_have_an_account".tr,
                           style: theme.textTheme.bodyMedium),
                       InkWell(
-                        onTap: (){
+                        onTap: () {
                           Get.to(SignUpScreen());
                         },
                         child: Padding(
@@ -262,7 +228,6 @@ class LoginScreen extends StatelessWidget {
           Container(
               height: 48.v,
               width: 104.h,
-
               padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
               decoration: AppDecoration.greyWhite
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
@@ -274,7 +239,6 @@ class LoginScreen extends StatelessWidget {
           Container(
               height: 48.v,
               width: 104.h,
-
               padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
               decoration: AppDecoration.greyWhite
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
@@ -286,7 +250,6 @@ class LoginScreen extends StatelessWidget {
           Container(
               height: 48.v,
               width: 104.h,
-
               padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
               decoration: AppDecoration.greyWhite
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),

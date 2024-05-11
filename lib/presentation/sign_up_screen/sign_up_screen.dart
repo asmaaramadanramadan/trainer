@@ -2,6 +2,9 @@ import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/core/utils/validation_functions.dart';
 import 'package:fty/widgets/custom_text_form_field.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
+import 'package:get/route_manager.dart';
+import '../home_navigate/home_navigate.dart';
+import '../home_post_injury_rehabilitation_screen/home_post_injury_rehabilitation_screen.dart';
 import '../login_screen/login_screen.dart';
 import 'models/sign_up_model.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +39,13 @@ class SignUpScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 style: CustomTextStyles
                                     .bodyLargePoppinsOnPrimaryContainer_1)),
-                        SizedBox(height: 29.v),
+                        SizedBox(height: 12.v),
                         _buildContainer(context),
-
                         CustomElevatedButton(
-                            text: "lbl_send".tr,
+                            onPressed: () {
+                              Get.to(HomeNavigate());
+                            },
+                            text: "Sign Up".tr,
                             margin: EdgeInsets.symmetric(horizontal: 18.h)),
                         SizedBox(height: 16.v),
                         Row(
@@ -57,8 +62,8 @@ class SignUpScreen extends StatelessWidget {
                                         style: CustomTextStyles
                                             .titleSmallPrimary
                                             .copyWith(
-                                            decoration:
-                                            TextDecoration.underline)),
+                                                decoration:
+                                                    TextDecoration.underline)),
                                     onTap: () {
                                       Navigator.push(
                                           context,
@@ -72,7 +77,7 @@ class SignUpScreen extends StatelessWidget {
                                   height: 20.adaptSize,
                                   width: 20.adaptSize,
                                   margin:
-                                  EdgeInsets.only(left: 4.h, bottom: 2.v))
+                                      EdgeInsets.only(left: 4.h, bottom: 2.v))
                             ]),
                         SizedBox(height: 66.v),
                         _buildSubContainer(context),
@@ -91,9 +96,6 @@ class SignUpScreen extends StatelessWidget {
               TextSpan(
                   text: "lbl_welcome_to".tr,
                   style: CustomTextStyles.headlineLargeff030303),
-              TextSpan(
-                  text: "lbl2".tr,
-                  style: CustomTextStyles.headlineLargeff056aff)
             ]),
             textAlign: TextAlign.left));
   }
@@ -106,7 +108,6 @@ class SignUpScreen extends StatelessWidget {
           child: Container(
               height: 80.adaptSize,
               width: 80.adaptSize,
-              padding: EdgeInsets.all(20.h),
               decoration: AppDecoration.outlinePrimary
                   .copyWith(borderRadius: BorderRadiusStyle.circleBorder40),
               child: CustomImageView(
@@ -124,7 +125,6 @@ class SignUpScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 49.v),
                       Text("lbl_email".tr, style: theme.textTheme.titleMedium),
                       SizedBox(height: 8.v),
                       CustomTextFormField(
@@ -202,6 +202,7 @@ class SignUpScreen extends StatelessWidget {
                             }
                             return null;
                           }),
+                      SizedBox(height: 8.v),
                     ]),
               )))
     ]);
