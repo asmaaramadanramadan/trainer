@@ -1,12 +1,53 @@
+import 'package:camera/camera.dart';
 import 'package:fty/widgets/custom_icon_button.dart';
+import 'package:timer_count_down/timer_controller.dart';
+import 'package:timer_count_down/timer_count_down.dart';
+import '../../main.dart';
 import 'models/scan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
 import 'bloc/scan_bloc.dart';
 import 'package:fty/presentation/scan_one_bottomsheet/scan_one_bottomsheet.dart';
 
-class ScanPage extends StatelessWidget {
+class ScanPage extends StatefulWidget {
   const ScanPage({Key? key}) : super(key: key);
+
+  @override
+  State<ScanPage> createState() => _ScanPageState();
+}
+
+class _ScanPageState extends State<ScanPage> {
+  late CameraController controller;
+  final CountdownController _controller = new CountdownController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller = CameraController(cameras[0], ResolutionPreset.max);
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    }).catchError((Object e) {
+      if (e is CameraException) {
+        switch (e.code) {
+          case 'CameraAccessDenied':
+            // Handle access errors here.
+            break;
+          default:
+            // Handle other errors here.
+            break;
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,36 +56,71 @@ class ScanPage extends StatelessWidget {
             extendBody: true,
             extendBodyBehindAppBar: true,
             backgroundColor: Colors.transparent,
-            body: Container(
-                width: SizeUtils.width,
-                height: SizeUtils.height,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(ImageConstant.imgGroup271),
-                        fit: BoxFit.cover)),
-                child: Container(
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(ImageConstant.imgGroup271),
-                            fit: BoxFit.cover)),
-                    child: SingleChildScrollView(
-                        child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 24.h, vertical: 131.v),
-                            decoration: AppDecoration.fillBlack90001,
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  SizedBox(height: 244.v),
-                                  CustomImageView(
-                                      imagePath:
-                                          ImageConstant.imgTelevisionWhiteA700,
-                                      height: 21.adaptSize,
-                                      width: 21.adaptSize),
-                                  SizedBox(height: 194.v),
-                                  _buildFrame(context)
-                                ])))))));
+            body: Stack(
+              fit: StackFit.expand,
+              alignment: Alignment.bottomCenter,
+              children: [
+                CameraPreview(controller),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                        onPressed: () async {
+                          _controller.start();
+                          await controller.startVideoRecording();
+                        },
+                        icon: Icon(
+                          Icons.play_circle_fill_outlined,
+                          color: Colors.white,
+                          size: 60,
+                        )),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(.4),
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(
+                              color: Colors.blue.shade600, width: 6)),
+                      child: Countdown(
+                        controller: _controller,
+                        seconds: 10,
+                        build: (_, double time) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            time.toString(),
+                            style: TextStyle(fontSize: 50, color: Colors.white),
+                          ),
+                        ),
+                        interval: Duration(milliseconds: 100),
+                        onFinished: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Timer is done!'),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          _controller.restart();
+
+                          XFile video = await controller.stopVideoRecording();
+                          print('jiugjghfytghfvyghvyuj');
+                          print(video.path);
+                          print(video.path);
+                          print(video.path);
+                          print(video.path);
+                        },
+                        icon: Icon(
+                          Icons.pause,
+                          color: Colors.white,
+                          size: 60,
+                        )),
+                  ],
+                ),
+              ],
+            )));
   }
 
   /// Section Widget
@@ -86,18 +162,4 @@ class ScanPage extends StatelessWidget {
                           imagePath: ImageConstant.imgArrowLeft)))
             ]));
   }
-
-  /// Displays a bottom sheet widget using the [showModalBottomSheet] method
-  /// of the [Scaffold] class with [isScrollControlled] set to true.
-  ///
-  /// The bottom sheet is built using the [ScanOneBottomsheet]
-  /// class and the [builder] method of the bottom sheet is passed the
-  /// [BuildContext] object.
-  // onTapBtnArrowLeft(BuildContext context) {
-  //   showModalBottomSheet(
-  //       context: NavigatorService.navigatorKey.currentContext!,
-  //       builder: (_) => ScanOneBottomsheet.builder(
-  //           NavigatorService.navigatorKey.currentContext!),
-  //       isScrollControlled: true);
-  // }
 }

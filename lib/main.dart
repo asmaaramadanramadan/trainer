@@ -1,12 +1,32 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'core/app_export.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
-void main() {
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   Future.wait([
+//     SystemChrome.setPreferredOrientations([
+//       DeviceOrientation.portraitUp,
+//     ]),
+//     PrefUtils().init()
+//   ]).then((value) {
+//     runApp(MyApp());
+//   });
+// }
+
+late List<CameraDescription> cameras;
+late SharedPreferences prefs;
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
+
+  cameras = await availableCameras();
   Future.wait([
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

@@ -4,7 +4,6 @@ import '../../routes/app_routes.dart';
 import '../../widgets/custom_bottom_bar.dart';
 import '../chat_board_page/chat_board_page.dart';
 import '../home_post_injury_rehabilitation_screen/home_post_injury_rehabilitation_screen.dart';
-import '../home_regular_page/home_regular_page.dart';
 import '../my_account_page/my_account_page.dart';
 import '../reports_page/reports_page.dart';
 import '../scan_page/scan_page.dart';
@@ -61,24 +60,5 @@ class _HomeNavigateState extends State<HomeNavigate> {
     }
   }
 
-  ///Handling page based on route
-  Widget getCurrentPage(
-    BuildContext context,
-    String currentRoute,
-  ) {
-    switch (currentRoute) {
-      case AppRoutes.homeRegularPage:
-        return HomeRegularPage();
-      case AppRoutes.reportsPage:
-        return ReportsPage();
-      case AppRoutes.chatBoardPage:
-        return ChatBoardPage();
-      case AppRoutes.scanPage:
-        return ScanPage();
-      case AppRoutes.myAccountPage:
-        return MyAccountPage();
-      default:
-        return DefaultWidget();
-    }
-  }
+
 }

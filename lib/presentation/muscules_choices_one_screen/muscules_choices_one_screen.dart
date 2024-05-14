@@ -26,26 +26,24 @@ class MusculesChoicesOneScreen extends StatelessWidget {
                     children: [
                       Align(
                           alignment: Alignment.centerRight,
-                          child: Padding(
-                              padding: EdgeInsets.only(left: 58.h, right: 8.h),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 17.v),
-                                        child: Text(
-                                            "msg_post_injury_rehabilitation".tr,
-                                            style: CustomTextStyles
-                                                .titleMediumBlack90001)),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 27.h, bottom: 20.v),
-                                        child: CustomIconButton(
-                                            height: 24.adaptSize,
-                                            width: 24.adaptSize,
-                                            child: CustomImageView()))
-                                  ]))),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.only(top: 17.v),
+                                    child: Text(
+                                        "msg_post_injury_rehabilitation".tr,
+                                        style: CustomTextStyles
+                                            .titleMediumBlack90001)),
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 27.h, bottom: 20.v),
+                                    child: CustomIconButton(
+                                        height: 24.adaptSize,
+                                        width: 24.adaptSize,
+                                        child: CustomImageView()))
+                              ])),
                       SizedBox(height: 12.v),
                       Align(
                           alignment: Alignment.center,
@@ -104,25 +102,13 @@ class MusculesChoicesOneScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildInjurymuscles(BuildContext context) {
     return CustomCheckboxButton(
-        text: "lbl_injury_muscles".tr,
-        value: false,
-        onChange: (value) {
-          context
-              .read<MusculesChoicesOneBloc>()
-              .add(ChangeCheckBoxEvent(value: value));
-        });
+        text: "lbl_injury_muscles".tr, value: false, onChange: (value) {});
   }
 
   /// Section Widget
   Widget _buildClose(BuildContext context) {
     return CustomCheckboxButton(
-        text: "msg_when_did_you_have".tr,
-        value: false,
-        onChange: (value) {
-          context
-              .read<MusculesChoicesOneBloc>()
-              .add(ChangeCheckBox1Event(value: value));
-        });
+        text: "msg_when_did_you_have".tr, value: false, onChange: (value) {});
   }
 
   /// Section Widget
@@ -142,11 +128,7 @@ class MusculesChoicesOneScreen extends StatelessWidget {
         child: CustomCheckboxButton(
             text: "msg_how_much_time_required".tr,
             value: false,
-            onChange: (value) {
-              context
-                  .read<MusculesChoicesOneBloc>()
-                  .add(ChangeCheckBox2Event(value: value));
-            }));
+            onChange: (value) {}));
   }
 
   /// Section Widget
@@ -167,15 +149,15 @@ class MusculesChoicesOneScreen extends StatelessWidget {
   }
 
   /// Displays a dialog with the [DoneOneDialog] content.
-  // onTapNext(BuildContext context) {
-  //   showDialog(
-  //       context: NavigatorService.navigatorKey.currentContext!,
-  //       builder: (_) => AlertDialog(
-  //             content: DoneOneDialog.builder(
-  //                 NavigatorService.navigatorKey.currentContext!),
-  //             backgroundColor: Colors.transparent,
-  //             contentPadding: EdgeInsets.zero,
-  //             insetPadding: const EdgeInsets.only(left: 0),
-  //           ));
-  // }
+// onTapNext(BuildContext context) {
+//   showDialog(
+//       context: NavigatorService.navigatorKey.currentContext!,
+//       builder: (_) => AlertDialog(
+//             content: DoneOneDialog.builder(
+//                 NavigatorService.navigatorKey.currentContext!),
+//             backgroundColor: Colors.transparent,
+//             contentPadding: EdgeInsets.zero,
+//             insetPadding: const EdgeInsets.only(left: 0),
+//           ));
+// }
 }

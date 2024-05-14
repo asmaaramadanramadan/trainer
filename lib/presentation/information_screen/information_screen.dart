@@ -1,17 +1,51 @@
+import 'package:fty/presentation/information_screen/controller/information_controller.dart';
 import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_two.dart';
 import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:fty/widgets/custom_text_form_field.dart';
 import 'package:fty/widgets/custom_drop_down.dart';
-import 'models/information_model.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
-import 'bloc/information_bloc.dart';
+import 'package:get/get.dart';
 
-class InformationScreen extends StatelessWidget {
+class InformationScreen extends StatefulWidget {
   const InformationScreen({Key? key}) : super(key: key);
+
+  @override
+  State<InformationScreen> createState() => _InformationScreenState();
+}
+
+class _InformationScreenState extends State<InformationScreen> {
+  DateTime selectedDate = DateTime.now();
+  TextEditingController date = TextEditingController();
+  TextEditingController weight = TextEditingController();
+  InformationController informationController =
+      Get.put(InformationController());
+  TimeOfDay selectedTime = TimeOfDay.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        informationController.selectedTime =
+            '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
+        date = TextEditingController(
+            text:
+                '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}');
+      });
+  }
+
+  String? _selectedGender;
+
+  List<String> _genders = ['male', 'female'];
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +64,10 @@ class InformationScreen extends StatelessWidget {
                           child: Container(
                               width: 331.h,
                               margin: EdgeInsets.only(left: 16.h, right: 17.h),
-                              child: Text("msg_a_coach_will_assign".tr,
+                              child: Text(
+                                  LocalizationExtension(
+                                          "msg_a_coach_will_assign")
+                                      .tr,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.center,
@@ -43,55 +80,58 @@ class InformationScreen extends StatelessWidget {
                       SizedBox(height: 15.v),
                       Padding(
                           padding: EdgeInsets.only(left: 6.h),
-                          child: Text("lbl_date_of_birth".tr,
+                          child: Text(
+                              LocalizationExtension("lbl_date_of_birth").tr,
                               style: theme.textTheme.titleMedium)),
                       SizedBox(height: 8.v),
                       _buildInputField(context),
                       SizedBox(height: 14.v),
-                      Padding(
-                          padding: EdgeInsets.only(left: 6.h),
-                          child: Text("msg_choose_you_gender".tr,
-                              style: theme.textTheme.titleMedium)),
-                      SizedBox(height: 5.v),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 6.h),
-                          child: CustomDropDown(
-                              icon: Container(
-                                  margin: EdgeInsets.fromLTRB(
-                                      30.h, 12.v, 12.h, 12.v),
-                                  child: CustomImageView(
-                                      imagePath: ImageConstant
-                                          .imgArrowdownOnprimarycontainer,
-                                      height: 20.adaptSize,
-                                      width: 20.adaptSize)),
-                              hintText: "msg_select_yout_gender".tr,
-                              hintStyle: theme.textTheme.bodyMedium!,
-                              items: [],
-                              contentPadding: EdgeInsets.only(
-                                  left: 12.h, top: 12.v, bottom: 12.v))),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.only(left: 6.h),
+                              child: Text(
+                                  LocalizationExtension("msg_choose_you_gender")
+                                      .tr,
+                                  style: theme.textTheme.titleMedium)),
+                          Padding(
+                            padding: EdgeInsets.all(12),
+                            child: DropdownButton<String>(
+                              value: _selectedGender,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  _selectedGender = newValue;
+                                });
+                              },
+                              items: _genders.map((String gender) {
+                                return DropdownMenuItem<String>(
+                                  value: gender,
+                                  child: Text(gender),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
                       SizedBox(height: 14.v),
                       Padding(
                           padding: EdgeInsets.only(left: 6.h),
-                          child: Text("msg_what_s_your_weight".tr,
+                          child: Text(
+                              LocalizationExtension("msg_what_s_your_weight")
+                                  .tr,
                               style: theme.textTheme.titleMedium)),
                       SizedBox(height: 9.v),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                    padding: EdgeInsets.only(bottom: 1.v),
-                                    child: Text("lbl_54".tr,
-                                        style: CustomTextStyles
-                                            .displaySmallPoppins)),
-                                Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 4.h, top: 37.v),
-                                    child: Text("lbl_kg".tr,
-                                        style: CustomTextStyles
-                                            .bodySmallOnErrorContainer))
-                              ])),
+                      Expanded(
+                          child: Padding(
+                              padding: EdgeInsets.only(top: 1.v),
+                              child: CustomTextFormField(
+                                  controller: weight,
+                                  hintText:
+                                      LocalizationExtension("Enter Your Weight")
+                                          .tr,
+                                  hintStyle: theme.textTheme.bodyMedium!,
+                                  textInputAction: TextInputAction.done))),
                       SizedBox(height: 9.v),
                       _buildLine(context),
                       SizedBox(height: 5.v)
@@ -103,7 +143,8 @@ class InformationScreen extends StatelessWidget {
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
         centerTitle: true,
-        title: AppbarSubtitleTwo(text: "msg_choose_your_exercises".tr));
+        title: AppbarSubtitleTwo(
+            text: LocalizationExtension("msg_choose_your_exercises").tr));
   }
 
   /// Section Widget
@@ -198,21 +239,27 @@ class InformationScreen extends StatelessWidget {
             .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(
                   child: Padding(
                       padding: EdgeInsets.only(top: 1.v),
                       child: CustomTextFormField(
-                          controller: TextEditingController(),
-                          hintText: "msg_enter_your_date".tr,
+                          controller: date,
+                          hintText:
+                              LocalizationExtension("msg_enter_your_date").tr,
                           hintStyle: theme.textTheme.bodyMedium!,
                           textInputAction: TextInputAction.done))),
-              CustomImageView(
-                  imagePath: ImageConstant.imgVector,
-                  width: 15.h,
-                  margin: EdgeInsets.fromLTRB(12.h, 1.v, 2.h, 3.v))
+              InkWell(
+                onTap: () {
+                  _selectDate(context);
+                },
+                child: CustomImageView(
+                    imagePath: ImageConstant.imgVector,
+                    width: 15.h,
+                    margin: EdgeInsets.fromLTRB(12.h, 1.v, 2.h, 3.v)),
+              )
             ]));
   }
 
@@ -523,9 +570,11 @@ class InformationScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildNext(BuildContext context) {
     return CustomElevatedButton(
-        text: "lbl_next".tr,
+        text: LocalizationExtension("lbl_next").tr,
         margin: EdgeInsets.only(left: 18.h, right: 18.h, bottom: 58.v),
         onPressed: () {
+          informationController.weight = weight.text;
+          informationController.gender = _selectedGender!;
           onTapNext(context);
         });
   }

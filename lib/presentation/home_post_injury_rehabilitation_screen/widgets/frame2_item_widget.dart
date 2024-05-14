@@ -12,7 +12,7 @@ class Frame2ItemWidget extends StatelessWidget {
           key: key,
         );
 
-  Frame2ItemModel frame2ItemModelObj;
+  var frame2ItemModelObj;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,8 @@ class Frame2ItemWidget extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CustomImageView(
-            imagePath: frame2ItemModelObj?.lowerBodyTraining,
+            imagePath: frame2ItemModelObj['image'],
+
             height: 174.v,
             radius: BorderRadius.circular(
               23.h,
@@ -79,7 +80,7 @@ class Frame2ItemWidget extends StatelessWidget {
                                 SizedBox(
                                   width: 128.h,
                                   child: Text(
-                                    frame2ItemModelObj.lowerBodyTraining1!,
+                                    frame2ItemModelObj['type'],
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: CustomTextStyles
@@ -103,7 +104,7 @@ class Frame2ItemWidget extends StatelessWidget {
                                         decoration:
                                             AppDecoration.outlineBlack90001,
                                         child: Text(
-                                          frame2ItemModelObj.kcalCounter!,
+                                          frame2ItemModelObj['calories_burn'],
                                           style: CustomTextStyles
                                               .labelLargeLatoWhiteA700,
                                         ),
@@ -120,7 +121,7 @@ class Frame2ItemWidget extends StatelessWidget {
                                         decoration:
                                             AppDecoration.outlineBlack90001,
                                         child: Text(
-                                          frame2ItemModelObj.time!,
+                                          frame2ItemModelObj['time'],
                                           style: CustomTextStyles
                                               .labelLargeLatoWhiteA700,
                                         ),

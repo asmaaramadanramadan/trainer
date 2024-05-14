@@ -25,6 +25,11 @@ dependencies:
   get:
   smooth_page_indicator:
   lottie:
+  http:
+  image_picker:
+  camera: ^0.11.0
+  timer_count_down: ^2.2.2
+  intl:
 dev_dependencies: 
   flutter_test: 
     sdk: flutter

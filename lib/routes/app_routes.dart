@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../presentation/home_navigate/home_navigate.dart';
 import '../presentation/my_account_page/my_account_page.dart';
 import '../presentation/onboarding_screen/onboarding_screen.dart';
@@ -106,7 +107,8 @@ class AppRoutes {
         searchScreen: (context) => SearchScreen(),
         afterRecentlySearchPageScreen: (context) =>
             AfterRecentlySearchPageScreen(),
-        homeRegularContainerScreen: (context) => HomePostInjuryRehabilitationScreen(),
+        homeRegularContainerScreen: (context) =>
+            HomePostInjuryRehabilitationScreen(),
         informationScreen: (context) => InformationScreen(),
         yourHeightScreen: (context) => YourHeightScreen(),
         applicationTypeScreen: (context) => ApplicationTypeScreen(),
@@ -131,6 +133,8 @@ class AppRoutes {
         notificationScreen: (context) => NotificationScreen(),
         settingScreen: (context) => SettingScreen(),
         appNavigationScreen: (context) => AppNavigationScreen(),
-        initialRoute: (context) => OnboardingScreen()
+        // initialRoute: (context) => SignUpScreen()
+        initialRoute: (context) =>
+                prefs.getString('token') != null ? HomeNavigate() : OnboardingScreen()
       };
 }

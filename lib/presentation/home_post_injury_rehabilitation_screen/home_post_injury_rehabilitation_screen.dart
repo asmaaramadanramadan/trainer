@@ -1,4 +1,4 @@
-import 'package:fty/presentation/home_regular_page/home_regular_page.dart';
+import 'package:fty/presentation/home_post_injury_rehabilitation_screen/controller/home_controller.dart';
 import 'package:fty/presentation/reports_page/reports_page.dart';
 import 'package:fty/presentation/chat_board_page/chat_board_page.dart';
 import 'package:fty/presentation/scan_page/scan_page.dart';
@@ -10,7 +10,9 @@ import 'package:fty/widgets/app_bar/appbar_subtitle_ten.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_iconbutton.dart';
 import 'package:fty/widgets/custom_search_view.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import '../../main.dart';
 import 'widgets/homepostinjuryrehabilitation_item_widget.dart';
 import 'models/homepostinjuryrehabilitation_item_model.dart';
 import 'models/home_post_injury_rehabilitation_model.dart';
@@ -30,9 +32,14 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
         );
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
+    print(prefs.getString('token'));
+    print(prefs.getString('token'));
+    print(prefs.getString('token'));
+    print(prefs.getString('token'));
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -54,7 +61,7 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.only(left: 18.h),
                             child: Text(
-                              "lbl_best_for_you".tr,
+                              LocalizationExtension("lbl_best_for_you").tr,
                               style: CustomTextStyles.titleMediumBlack90001Bold,
                             ),
                           ),
@@ -67,7 +74,7 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.only(left: 18.h),
                             child: Text(
-                              "msg_popular_workouts".tr,
+                              LocalizationExtension("msg_popular_workouts").tr,
                               style: CustomTextStyles.titleMediumBlack90001Bold,
                             ),
                           ),
@@ -80,7 +87,7 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.only(left: 18.h),
                             child: Text(
-                              "lbl_challenge".tr,
+                              LocalizationExtension("lbl_challenge").tr,
                               style:
                                   CustomTextStyles.titleMediumLatoWhiteA700Bold,
                             ),
@@ -127,14 +134,16 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 children: [
                   AppbarSubtitleEight(
-                    text: "lbl_hello_hager".tr,
+                    text: LocalizationExtension("lbl_hello_hager").tr,
                     margin: EdgeInsets.only(
                       right: 84.h,
                       bottom: 23.v,
                     ),
                   ),
                   AppbarSubtitleTen(
-                    text: "msg_post_injury_rehabilitation".tr,
+                    text:
+                        LocalizationExtension("msg_post_injury_rehabilitation")
+                            .tr,
                     margin: EdgeInsets.only(top: 29.v),
                   ),
                 ],
@@ -164,7 +173,7 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                 Expanded(
                   child: CustomSearchView(
                     controller: TextEditingController(),
-                    hintText: "lbl_search_bar".tr,
+                    hintText: LocalizationExtension("lbl_search_bar").tr,
                   ),
                 ),
                 CustomImageView(
@@ -225,7 +234,7 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                       width: 168.h,
                       margin: EdgeInsets.only(right: 6.h),
                       child: Text(
-                        "msg_best_quarantine".tr,
+                        LocalizationExtension("msg_best_quarantine").tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: CustomTextStyles.titleLargeLatoWhiteA700,
@@ -235,7 +244,7 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "lbl_see_more".tr,
+                          LocalizationExtension("lbl_see_more").tr,
                           maxLines: 4,
                           style: CustomTextStyles.labelLargeLatoPrimary,
                         ),
@@ -262,53 +271,70 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildHomepostinjuryrehabilitation(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 18.h),
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisExtent: 83.v,
-          crossAxisCount: 3,
-          mainAxisSpacing: 15.h,
-          crossAxisSpacing: 15.h,
-        ),
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: 0,
-        itemBuilder: (context, index) {
-          HomepostinjuryrehabilitationItemModel model =
-              HomepostinjuryrehabilitationItemModel();
-          return HomepostinjuryrehabilitationItemWidget(
-            model,
-          );
-        },
-      ),
-    );
+    return FutureBuilder(
+        future: homeController.getBestForYou(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            Map bestForYou = snapshot.data as Map;
+            return GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisExtent: 110,
+                crossAxisCount: 2,
+                mainAxisSpacing: 10.h,
+                crossAxisSpacing: 10.h,
+              ),
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: bestForYou['data'].length,
+              itemBuilder: (context, index) {
+                return HomepostinjuryrehabilitationItemWidget(
+                  bestForYou['data'][index],
+                );
+              },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
   }
 
   /// Section Widget
   Widget _buildFrame(BuildContext context) {
-    return SizedBox(
-      height: 174.v,
-      child: ListView.separated(
-        padding: EdgeInsets.only(left: 18.h),
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (
-          context,
-          index,
-        ) {
-          return SizedBox(
-            width: 20.h,
-          );
-        },
-        itemCount: 0,
-        itemBuilder: (context, index) {
-          Frame2ItemModel model = Frame2ItemModel();
-          return Frame2ItemWidget(
-            model,
-          );
-        },
-      ),
-    );
+    return FutureBuilder(
+        future: homeController.getPopular(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            Map data = snapshot.data as Map;
+            return SizedBox(
+              height: 174.v,
+              child: ListView.separated(
+                padding: EdgeInsets.only(left: 18.h),
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (
+                  context,
+                  index,
+                ) {
+                  return SizedBox(
+                    width: 20.h,
+                  );
+                },
+                itemCount: data['data'].length,
+                itemBuilder: (context, index) {
+                  Frame2ItemModel model = Frame2ItemModel();
+                  return Frame2ItemWidget(
+                    data['data'][index],
+                  );
+                },
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
   }
 
   /// Section Widget
@@ -336,6 +362,4 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

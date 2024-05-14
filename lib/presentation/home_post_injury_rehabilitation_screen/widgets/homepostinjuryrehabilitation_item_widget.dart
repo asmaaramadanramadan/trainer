@@ -11,8 +11,7 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
           key: key,
         );
 
-  HomepostinjuryrehabilitationItemModel
-      homepostinjuryrehabilitationItemModelObj;
+  var homepostinjuryrehabilitationItemModelObj;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +23,9 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomImageView(
-            imagePath: homepostinjuryrehabilitationItemModelObj?.bellyfatburner,
-            height: 69.adaptSize,
-            width: 69.adaptSize,
-            radius: BorderRadius.circular(
-              5.h,
-            ),
-          ),
+          Image(
+              image: NetworkImage(
+                  homepostinjuryrehabilitationItemModelObj['image'])),
           Padding(
             padding: EdgeInsets.only(
               left: 7.h,
@@ -41,10 +35,10 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  homepostinjuryrehabilitationItemModelObj.bellyFatBurner1!,
+                  homepostinjuryrehabilitationItemModelObj['title'],
                   style: CustomTextStyles.labelLargeLatoGray900,
                 ),
-                SizedBox(height: 10.v),
+                // SizedBox(height: 10.v),
                 Container(
                   width: 46.h,
                   padding: EdgeInsets.symmetric(
@@ -55,7 +49,7 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
                     borderRadius: BorderRadiusStyle.roundedBorder2,
                   ),
                   child: Text(
-                    homepostinjuryrehabilitationItemModelObj.time!,
+                    homepostinjuryrehabilitationItemModelObj['time'],
                     style: CustomTextStyles.bodySmallLatoGray90011,
                   ),
                 ),
@@ -70,7 +64,7 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
                     borderRadius: BorderRadiusStyle.roundedBorder2,
                   ),
                   child: Text(
-                    homepostinjuryrehabilitationItemModelObj.beginner!,
+                    homepostinjuryrehabilitationItemModelObj['level'],
                     style: CustomTextStyles.bodySmallLatoGray90011,
                   ),
                 ),

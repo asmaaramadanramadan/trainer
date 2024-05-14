@@ -2,13 +2,19 @@ import 'package:fty/widgets/custom_icon_button.dart';
 import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_two.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
+import 'package:get/get.dart';
+import '../../widgets/custom_text_form_field.dart';
+import '../information_screen/controller/information_controller.dart';
 import 'models/your_height_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
 import 'bloc/your_height_bloc.dart';
 
 class YourHeightScreen extends StatelessWidget {
-  const YourHeightScreen({Key? key}) : super(key: key);
+  YourHeightScreen({Key? key}) : super(key: key);
+  final TextEditingController height = TextEditingController();
+  InformationController informationController =
+      Get.put(InformationController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class YourHeightScreen extends StatelessWidget {
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(horizontal: 18.h),
                 child: Column(children: [
-                  Text("msg_a_coach_will_assign".tr,
+                  Text(LocalizationExtension("msg_a_coach_will_assign").tr,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
@@ -33,36 +39,19 @@ class YourHeightScreen extends StatelessWidget {
                   SizedBox(height: 20.v),
                   Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("msg_what_s_your_height".tr,
+                      child: Text(
+                          LocalizationExtension("msg_what_s_your_height").tr,
                           style: theme.textTheme.titleMedium)),
                   SizedBox(height: 22.v),
-                  SizedBox(
-                      width: 156.h,
-                      child: Divider(color: theme.colorScheme.primary)),
-                  SizedBox(height: 1.v),
-                  SizedBox(
-                      height: 79.v,
-                      width: 156.h,
-                      child: Stack(alignment: Alignment.bottomRight, children: [
-                        Align(
-                            alignment: Alignment.bottomCenter,
-                            child: SizedBox(
-                                width: 156.h,
-                                child:
-                                    Divider(color: theme.colorScheme.primary))),
-                        Align(
-                            alignment: Alignment.bottomRight,
-                            child: Padding(
-                                padding:
-                                    EdgeInsets.only(right: 2.h, bottom: 12.v),
-                                child: Text("lbl_cm".tr,
-                                    style: CustomTextStyles
-                                        .bodyLargeOpenSansPrimary))),
-                        Align(
-                            alignment: Alignment.center,
-                            child: Text("lbl_167".tr,
-                                style: theme.textTheme.displayLarge))
-                      ])),
+                  Expanded(
+                      child: Padding(
+                          padding: EdgeInsets.only(top: 1.v),
+                          child: CustomTextFormField(
+                              controller: height,
+                              hintText:
+                                  LocalizationExtension("Enter Your Height").tr,
+                              hintStyle: theme.textTheme.bodyMedium!,
+                              textInputAction: TextInputAction.done))),
                 ])),
             bottomNavigationBar: _buildNext(context)));
   }
@@ -71,7 +60,8 @@ class YourHeightScreen extends StatelessWidget {
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
         centerTitle: true,
-        title: AppbarSubtitleTwo(text: "msg_choose_your_exercises".tr));
+        title: AppbarSubtitleTwo(
+            text: LocalizationExtension("msg_choose_your_exercises").tr));
   }
 
   /// Section Widget
@@ -79,9 +69,11 @@ class YourHeightScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(left: 18.h, right: 4.h),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          _buildContainer(context, yourHeight: "lbl_information".tr),
+          _buildContainer(context,
+              yourHeight: LocalizationExtension("lbl_information").tr),
           Spacer(flex: 57),
-          _buildContainer(context, yourHeight: "lbl_your_height".tr),
+          _buildContainer(context,
+              yourHeight: LocalizationExtension("lbl_your_height").tr),
           Spacer(flex: 42),
           Column(children: [
             CustomIconButton(
@@ -92,7 +84,8 @@ class YourHeightScreen extends StatelessWidget {
                 child: CustomImageView(
                     imagePath: ImageConstant.imgGuidancePersonalTraining)),
             SizedBox(height: 9.v),
-            Text("msg_application_type".tr, style: theme.textTheme.bodySmall)
+            Text(LocalizationExtension("msg_application_type").tr,
+                style: theme.textTheme.bodySmall)
           ])
         ]));
   }
@@ -100,9 +93,10 @@ class YourHeightScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildNext(BuildContext context) {
     return CustomElevatedButton(
-        text: "lbl_next".tr,
+        text: LocalizationExtension("lbl_next").tr,
         margin: EdgeInsets.only(left: 18.h, right: 18.h, bottom: 58.v),
         onPressed: () {
+          informationController.height = height.text;
           onTapNext(context);
         });
   }
