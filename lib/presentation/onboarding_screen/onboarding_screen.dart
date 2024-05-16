@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fty/presentation/onboarding_screen/size_config.dart';
 import 'package:get/route_manager.dart';
 
@@ -74,15 +75,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: SizeConfig.blockV! * 35,
                         ),
                         SizedBox(
-                          height: (height >= 840) ? 60 : 30,
+                          height:30,
                         ),
-                        Text(
-                          contents[i].title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: "Mulish",
-                            fontWeight: FontWeight.w600,
-                            fontSize: (width <= 550) ? 30 : 35,
+                        Flexible(
+                          child: Text(
+                            contents[i].title,
+                            textAlign: TextAlign.center,
+                            maxLines: 4,
+                            style: TextStyle(
+                              fontFamily: "Mulish",
+                              fontWeight: FontWeight.w600,
+                              fontSize: (width <= 550) ? 30 : 35,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 15),

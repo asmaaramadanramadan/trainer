@@ -113,7 +113,6 @@ class AppRoutes {
         yourHeightScreen: (context) => YourHeightScreen(),
         applicationTypeScreen: (context) => ApplicationTypeScreen(),
         applicationTypeActiveScreen: (context) => ApplicationTypeActiveScreen(),
-        detailsScreen: (context) => DetailsScreen(),
         cameraScreen: (context) => CameraScreen(),
         homePostInjuryRehabilitationScreen: (context) =>
             HomePostInjuryRehabilitationScreen(),

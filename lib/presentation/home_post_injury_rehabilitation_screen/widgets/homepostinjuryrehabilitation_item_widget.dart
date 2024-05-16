@@ -1,6 +1,7 @@
-import '../models/homepostinjuryrehabilitation_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
+import 'package:fty/presentation/details_screen/details_screen.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
@@ -15,32 +16,35 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(6.h),
-      decoration: AppDecoration.fillWhiteA.copyWith(
-        borderRadius: BorderRadiusStyle.roundedBorder8,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image(
-              image: NetworkImage(
-                  homepostinjuryrehabilitationItemModelObj['image'])),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 7.h,
-              top: 2.v,
-            ),
-            child: Column(
+    return InkWell(
+      onTap: () {
+        Get.to(DetailsScreen(
+          data: homepostinjuryrehabilitationItemModelObj,
+        ));
+      },
+      child: Container(
+        padding: EdgeInsets.all(6.h),
+        decoration: AppDecoration.fillWhiteA.copyWith(
+          borderRadius: BorderRadiusStyle.roundedBorder8,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+                image: NetworkImage(
+                    homepostinjuryrehabilitationItemModelObj['image'])),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  homepostinjuryrehabilitationItemModelObj['title'],
-                  style: CustomTextStyles.labelLargeLatoGray900,
+                Flexible(
+                  child: Text(
+                    homepostinjuryrehabilitationItemModelObj['title'],
+                    style: CustomTextStyles.labelLargeLatoGray900,
+                    maxLines: 2,
+                  ),
                 ),
                 // SizedBox(height: 10.v),
                 Container(
-                  width: 46.h,
                   padding: EdgeInsets.symmetric(
                     horizontal: 5.h,
                     vertical: 1.v,
@@ -70,8 +74,8 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
