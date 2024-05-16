@@ -68,55 +68,55 @@ class _ScanPageState extends State<ScanPage> {
                     IconButton(
                         onPressed: () async {
                           _controller.start();
-                          await controller.startVideoRecording();
+                          XFile imagePicked = await controller.takePicture();
                         },
                         icon: Icon(
-                          Icons.play_circle_fill_outlined,
+                          Icons.camera,
                           color: Colors.white,
                           size: 60,
                         )),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(.4),
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(
-                              color: Colors.blue.shade600, width: 6)),
-                      child: Countdown(
-                        controller: _controller,
-                        seconds: 10,
-                        build: (_, double time) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            time.toString(),
-                            style: TextStyle(fontSize: 50, color: Colors.white),
-                          ),
-                        ),
-                        interval: Duration(milliseconds: 100),
-                        onFinished: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Timer is done!'),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () async {
-                          _controller.restart();
-
-                          XFile video = await controller.stopVideoRecording();
-                          print('jiugjghfytghfvyghvyuj');
-                          print(video.path);
-                          print(video.path);
-                          print(video.path);
-                          print(video.path);
-                        },
-                        icon: Icon(
-                          Icons.pause,
-                          color: Colors.white,
-                          size: 60,
-                        )),
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //       color: Colors.white.withOpacity(.4),
+                    //       borderRadius: BorderRadius.circular(100),
+                    //       border: Border.all(
+                    //           color: Colors.blue.shade600, width: 6)),
+                    //   child: Countdown(
+                    //     controller: _controller,
+                    //     seconds: 10,
+                    //     build: (_, double time) => Padding(
+                    //       padding: const EdgeInsets.all(8.0),
+                    //       child: Text(
+                    //         time.toString(),
+                    //         style: TextStyle(fontSize: 50, color: Colors.white),
+                    //       ),
+                    //     ),
+                    //     interval: Duration(milliseconds: 100),
+                    //     onFinished: () {
+                    //       ScaffoldMessenger.of(context).showSnackBar(
+                    //         SnackBar(
+                    //           content: Text('Timer is done!'),
+                    //         ),
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
+                    // IconButton(
+                    //     onPressed: () async {
+                    //       _controller.restart();
+                    //
+                    //       XFile video = await controller.stopVideoRecording();
+                    //       print('jiugjghfytghfvyghvyuj');
+                    //       print(video.path);
+                    //       print(video.path);
+                    //       print(video.path);
+                    //       print(video.path);
+                    //     },
+                    //     icon: Icon(
+                    //       Icons.pause,
+                    //       color: Colors.white,
+                    //       size: 60,
+                    //     )),
                   ],
                 ),
               ],
