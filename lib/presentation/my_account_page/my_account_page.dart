@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
+import 'package:fty/main.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_four.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/custom_icon_button.dart';
 import 'package:fty/widgets/custom_switch.dart';
+import 'package:get/get.dart';
 
+import '../login_screen/login_screen.dart';
 import 'bloc/my_account_bloc.dart';
+import 'controller/profile_controller.dart';
+import 'edit_password.dart';
+import 'profile_screen.dart';
 
 // ignore_for_file: must_be_immutable
 class MyAccountPage extends StatelessWidget {
@@ -17,6 +23,8 @@ class MyAccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProfileController controller = Get.put(ProfileController());
+
     return SafeArea(
       child: Scaffold(
         appBar: _buildAppBar(context),
@@ -31,17 +39,23 @@ class MyAccountPage extends StatelessWidget {
                 children: [
                   _buildAcco(context),
                   SizedBox(height: 24.v),
-                  _buildAutoLayoutHorizontal(
-                    context,
-                    setting: "lbl_edit_profile".tr,
-                    arrowRight: ImageConstant.imgArrowRight,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ProfileSettings()));
+                    },
+                    child: _buildAutoLayoutHorizontal(
+                      context,
+                      setting: LocalizationExtension("lbl_edit_profile").tr,
+                      arrowRight: ImageConstant.imgArrowRight,
+                    ),
                   ),
                   SizedBox(height: 16.v),
                   Divider(),
                   SizedBox(height: 15.v),
                   _buildAutoLayoutHorizontal(
                     context,
-                    setting: "lbl_setting".tr,
+                    setting: LocalizationExtension("lbl_setting").tr,
                     arrowRight: ImageConstant.imgArrowRight,
                   ),
                   SizedBox(height: 16.v),
@@ -53,7 +67,7 @@ class MyAccountPage extends StatelessWidget {
                   SizedBox(height: 15.v),
                   _buildAutoLayoutHorizontal(
                     context,
-                    setting: "lbl_help_center".tr,
+                    setting: LocalizationExtension("lbl_help_center").tr,
                     arrowRight: ImageConstant.imgArrowRight,
                   ),
                   SizedBox(height: 16.v),
@@ -67,18 +81,43 @@ class MyAccountPage extends StatelessWidget {
                   SizedBox(height: 16.v),
                   Divider(),
                   SizedBox(height: 15.v),
-                  _buildAutoLayoutHorizontal(
-                    context,
-                    setting: "lbl_change_password".tr,
-                    arrowRight: ImageConstant.imgArrowRight,
+                  InkWell(
+                    onTap: () {
+                      Get.to(EditPassword());
+                    },
+                    child: _buildAutoLayoutHorizontal(
+                      context,
+                      setting: LocalizationExtension("lbl_change_password").tr,
+                      arrowRight: ImageConstant.imgArrowRight,
+                    ),
                   ),
                   SizedBox(height: 16.v),
                   Divider(),
                   SizedBox(height: 15.v),
-                  _buildAutoLayoutHorizontal(
-                    context,
-                    setting: "lbl_logout".tr,
-                    arrowRight: ImageConstant.imgArrowRightRedA200,
+                  InkWell(
+                    onTap: () {
+                      controller.DeleteAccount();
+
+                    },
+                    child: _buildAutoLayoutHorizontal(
+                      context,
+                      setting: LocalizationExtension("Delete Account").tr,
+                      arrowRight: ImageConstant.imgArrowRightRedA200,
+                    ),
+                  ),
+                  SizedBox(height: 16.v),
+                  Divider(),
+                  SizedBox(height: 15.v),
+                  InkWell(
+                    onTap: () {
+                      controller.logout();
+
+                    },
+                    child: _buildAutoLayoutHorizontal(
+                      context,
+                      setting: LocalizationExtension("lbl_logout").tr,
+                      arrowRight: ImageConstant.imgArrowRightRedA200,
+                    ),
                   ),
                 ],
               ),
@@ -110,7 +149,7 @@ class MyAccountPage extends StatelessWidget {
               child: Icon(Icons.arrow_back),
             ),
             AppbarSubtitleFour(
-              text: "lbl_account".tr,
+              text: LocalizationExtension("lbl_account").tr,
               margin: EdgeInsets.only(left: 12.h),
             ),
           ],
@@ -159,12 +198,12 @@ class MyAccountPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "lbl_ahmed".tr,
+                  LocalizationExtension("lbl_ahmed").tr,
                   style: CustomTextStyles.titleMediumBlack90001SemiBold_1,
                 ),
                 SizedBox(height: 4.v),
                 Text(
-                  "msg_example_gmail_com".tr,
+                  LocalizationExtension("msg_example_gmail_com").tr,
                   style: CustomTextStyles.titleSmallOnPrimaryContainer,
                 ),
               ],
@@ -205,7 +244,7 @@ class MyAccountPage extends StatelessWidget {
                 bottom: 10.v,
               ),
               child: Text(
-                "msg_manage_notification".tr,
+                LocalizationExtension("msg_manage_notification").tr,
                 style: theme.textTheme.titleMedium,
               ),
             ),
@@ -241,7 +280,7 @@ class MyAccountPage extends StatelessWidget {
             bottom: 11.v,
           ),
           child: Text(
-            "lbl_dark_mode".tr,
+            LocalizationExtension("lbl_dark_mode").tr,
             style: theme.textTheme.titleMedium,
           ),
         ),
@@ -249,7 +288,7 @@ class MyAccountPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(vertical: 11.v),
           child: Text(
-            "lbl_not_effective".tr,
+            LocalizationExtension("lbl_not_effective").tr,
             style: CustomTextStyles.titleMediumOnPrimaryContainer,
           ),
         ),
@@ -288,7 +327,7 @@ class MyAccountPage extends StatelessWidget {
             bottom: 9.v,
           ),
           child: Text(
-            "lbl_language".tr,
+            LocalizationExtension("lbl_language").tr,
             style: theme.textTheme.titleMedium,
           ),
         ),
@@ -299,7 +338,7 @@ class MyAccountPage extends StatelessWidget {
             bottom: 11.v,
           ),
           child: Text(
-            "lbl_english_uk".tr,
+            LocalizationExtension("lbl_english_uk").tr,
             style: CustomTextStyles.titleMediumOnPrimaryContainer,
           ),
         ),
