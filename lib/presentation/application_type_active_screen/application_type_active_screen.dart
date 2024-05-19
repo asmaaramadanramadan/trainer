@@ -1,10 +1,8 @@
 import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_two.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
-import 'models/application_type_active_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
-import 'bloc/application_type_active_bloc.dart';
 import 'package:fty/presentation/done_dialog/done_dialog.dart';
 
 class ApplicationTypeActiveScreen extends StatelessWidget {

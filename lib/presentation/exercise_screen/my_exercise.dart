@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../home_post_injury_rehabilitation_screen/controller/home_controller.dart';
 import '../home_post_injury_rehabilitation_screen/widgets/frame2_item_widget.dart';
 
-class ExerciseScreen extends StatelessWidget {
-  ExerciseScreen({Key? key})
+class MyExerciseScreen extends StatelessWidget {
+  MyExerciseScreen({Key? key})
       : super(
           key: key,
         );
@@ -18,7 +18,7 @@ class ExerciseScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: appTheme.whiteA700,
         appBar: AppBar(
-          title: Text('All Plan'),
+          title: Text('My Plan'),
           centerTitle: true,
           leading: IconButton(
             onPressed: () => Get.back(),

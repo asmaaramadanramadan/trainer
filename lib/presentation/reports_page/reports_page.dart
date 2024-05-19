@@ -286,22 +286,19 @@ class ReportsPage extends StatelessWidget {
                                     .labelLargeLatoLightblueA700))
                       ])),
               SizedBox(height: 6.v),
-              SizedBox(
-                  height: 101.v,
-                  width: 354.h,
-                  child: EasyDateTimeLine(
-                      initialDate: DateTime.now(),
-                      // state.selectedDatesFromCalendar1 ?? DateTime.now(),
-                      locale: 'en_US',
-                      headerProps: EasyHeaderProps(
-                          selectedDateFormat: SelectedDateFormat.fullDateDMY,
-                          monthPickerType: MonthPickerType.switcher,
-                          showHeader: false),
-                      dayProps: EasyDayProps(),
-                      onDateChange: (selectedDate) {
-                        //state.selectedDatesFromCalendar1 = selectedDate;
-                        selectedDate;
-                      })),
+              EasyDateTimeLine(
+                  initialDate: DateTime.now(),
+                  // state.selectedDatesFromCalendar1 ?? DateTime.now(),
+                  locale: 'en_US',
+                  headerProps: EasyHeaderProps(
+                      selectedDateFormat: SelectedDateFormat.fullDateDMY,
+                      monthPickerType: MonthPickerType.switcher,
+                      showHeader: false),
+                  dayProps: EasyDayProps(),
+                  onDateChange: (selectedDate) {
+                    //state.selectedDatesFromCalendar1 = selectedDate;
+                    selectedDate;
+                  }),
               SizedBox(height: 7.v),
               Text("lbl_records".tr.toUpperCase(),
                   style: CustomTextStyles.labelLargeLatoLightblueA700)
