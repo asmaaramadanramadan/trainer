@@ -1,11 +1,11 @@
-import 'package:fty/widgets/custom_icon_button.dart';
-import 'package:fty/widgets/app_bar/custom_app_bar.dart';
-import 'package:fty/widgets/app_bar/appbar_subtitle_four.dart';
-import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
-import 'package:fty/widgets/custom_switch.dart';
-import 'models/my_account_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
+import 'package:fty/widgets/app_bar/appbar_subtitle_four.dart';
+import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
+import 'package:fty/widgets/app_bar/custom_app_bar.dart';
+import 'package:fty/widgets/custom_icon_button.dart';
+import 'package:fty/widgets/custom_switch.dart';
+
 import 'bloc/my_account_bloc.dart';
 
 // ignore_for_file: must_be_immutable

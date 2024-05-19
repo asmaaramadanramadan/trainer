@@ -1,29 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:fty/core/app_export.dart';
 import 'package:fty/presentation/home_post_injury_rehabilitation_screen/controller/home_controller.dart';
-import 'package:fty/presentation/reports_page/reports_page.dart';
-import 'package:fty/presentation/chat_board_page/chat_board_page.dart';
-import 'package:fty/presentation/scan_page/scan_page.dart';
-import 'package:fty/presentation/my_account_page/my_account_page.dart';
-import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/app_bar/appbar_leading_circleimage.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_eight.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_ten.dart';
-import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_iconbutton.dart';
+import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
+import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/custom_search_view.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
+
 import '../../main.dart';
-import 'widgets/homepostinjuryrehabilitation_item_widget.dart';
-import 'models/homepostinjuryrehabilitation_item_model.dart';
-import 'models/home_post_injury_rehabilitation_model.dart';
-import 'widgets/frame2_item_widget.dart';
 import 'models/frame2_item_model.dart';
-import 'widgets/frame3_item_widget.dart';
 import 'models/frame3_item_model.dart';
-import 'package:fty/widgets/custom_bottom_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:fty/core/app_export.dart';
-import 'bloc/home_post_injury_rehabilitation_bloc.dart';
+import 'widgets/frame2_item_widget.dart';
+import 'widgets/frame3_item_widget.dart';
+import 'widgets/homepostinjuryrehabilitation_item_widget.dart';
 
 class HomePostInjuryRehabilitationScreen extends StatelessWidget {
   HomePostInjuryRehabilitationScreen({Key? key})

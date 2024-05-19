@@ -1,14 +1,61 @@
-import 'package:fty/widgets/app_bar/custom_app_bar.dart';
-import 'package:fty/widgets/app_bar/appbar_leading_image.dart';
-import 'package:readmore/readmore.dart';
-import 'package:fty/widgets/custom_elevated_button.dart';
-import 'models/details_model.dart';
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
-import 'bloc/details_bloc.dart';
+import 'package:fty/presentation/details_screen/controller/details_controller.dart';
+import 'package:fty/widgets/app_bar/appbar_leading_image.dart';
+import 'package:fty/widgets/app_bar/custom_app_bar.dart';
+import 'package:fty/widgets/custom_elevated_button.dart';
+import 'package:get/get.dart';
+import 'package:readmore/readmore.dart';
+import 'package:video_player/video_player.dart';
 
-class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
+class DetailsScreen extends StatefulWidget {
+  const DetailsScreen({Key? key, required this.data}) : super(key: key);
+  final data;
+
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  late VideoPlayerController _videoPlayerController1;
+  ChewieController? _chewieController;
+  DetailsController detailsController = Get.put(DetailsController());
+
+  @override
+  void initState() {
+    initializePlayer();
+    super.initState();
+  }
+
+  Future<void> initializePlayer() async {
+    _videoPlayerController1 =
+        VideoPlayerController.network(widget.data['video']);
+
+    await Future.wait([
+      _videoPlayerController1.initialize(),
+    ]);
+    _createChewieController();
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController1.pause();
+    _videoPlayerController1.dispose();
+
+    _chewieController?.pause();
+    _chewieController?.dispose();
+
+    super.dispose();
+  }
+
+  void _createChewieController() {
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController1,
+      autoPlay: false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +77,33 @@ class DetailsScreen extends StatelessWidget {
                                   children: [
                                     _buildVideoSection(context),
                                     SizedBox(height: 21.v),
-                                    Text("lbl_jumping_jack".tr,
+                                    Text(widget.data['title'],
                                         style: CustomTextStyles
                                             .titleMediumPrimaryContainer),
                                     SizedBox(height: 3.v),
-                                    Text("msg_easy_390_calories".tr,
+                                    Text(widget.data['calories_burn'],
                                         style: CustomTextStyles
                                             .bodySmallGray60003),
                                     SizedBox(height: 25.v),
-                                    Text("lbl_descriptions".tr,
+                                    Text(
+                                        LocalizationExtension(
+                                                "lbl_descriptions")
+                                            .tr,
                                         style: CustomTextStyles
                                             .titleMediumPrimaryContainer),
                                     SizedBox(height: 6.v),
                                     SizedBox(
                                         width: 343.h,
                                         child: ReadMoreText(
-                                            "msg_a_jumping_jack".tr,
+                                            widget.data['description'],
                                             trimLines: 4,
                                             colorClickableText:
                                                 appTheme.indigoA100,
                                             trimMode: TrimMode.Line,
                                             trimCollapsedText:
-                                                "lbl_read_more".tr,
+                                                LocalizationExtension(
+                                                        "lbl_read_more")
+                                                    .tr,
                                             moreStyle: CustomTextStyles
                                                 .bodySmallGray60003,
                                             lessStyle: CustomTextStyles
@@ -59,13 +111,11 @@ class DetailsScreen extends StatelessWidget {
                                     SizedBox(height: 17.v),
                                     _buildStepTitle(context),
                                     SizedBox(height: 12.v),
-                                    _buildStep1(context),
-                                    SizedBox(height: 4.v),
-                                    _buildTwo(context),
-                                    SizedBox(height: 4.v),
-                                    _buildThree(context),
-                                    SizedBox(height: 4.v),
-                                    _buildStep4(context)
+                                    ...List.generate(
+                                      widget.data['steps'].length,
+                                      (index) => _buildStep1(context,
+                                          widget.data['steps'][index], index),
+                                    )
                                   ]))))
                 ])),
             bottomNavigationBar: _buildStartExercising(context)));
@@ -83,8 +133,23 @@ class DetailsScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildVideoSection(BuildContext context) {
-    return CustomImageView(
-        imagePath: ImageConstant.imgVideoSection, height: 150.v);
+    return SizedBox(
+      height: 200,
+      child: Center(
+        child: _chewieController != null &&
+                _chewieController!.videoPlayerController.value.isInitialized
+            ? Chewie(
+                controller: _chewieController!,
+              )
+            : const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 20),
+                ],
+              ),
+      ),
+    );
   }
 
   /// Section Widget
@@ -93,17 +158,17 @@ class DetailsScreen extends StatelessWidget {
         padding: EdgeInsets.only(right: 39.h),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text("lbl_how_to_do_it".tr,
+          Text(LocalizationExtension("lbl_how_to_do_it").tr,
               style: CustomTextStyles.titleMediumSemiBold),
           Padding(
               padding: EdgeInsets.only(top: 3.v, bottom: 2.v),
-              child: Text("lbl_4_steps".tr,
+              child: Text(widget.data['steps_count'],
                   style: CustomTextStyles.labelLargeOnPrimaryContainer))
         ]));
   }
 
   /// Section Widget
-  Widget _buildStep1(BuildContext context) {
+  Widget _buildStep1(BuildContext context, var stepData, int index) {
     return SizedBox(
         height: 104.v,
         width: 346.h,
@@ -111,7 +176,7 @@ class DetailsScreen extends StatelessWidget {
           Align(
               alignment: Alignment.bottomLeft,
               child: Padding(
-                  padding: EdgeInsets.only(left: 37.h),
+                  padding: EdgeInsets.only(left: 37.h, top: 10, bottom: 10),
                   child: SizedBox(
                       height: 79.v,
                       child: VerticalDivider(
@@ -127,7 +192,7 @@ class DetailsScreen extends StatelessWidget {
                   children: [
                     Padding(
                         padding: EdgeInsets.only(bottom: 61.v),
-                        child: Text("lbl_01".tr,
+                        child: Text(index.toString(),
                             style: CustomTextStyles.bodyMediumPrimary)),
                     Container(
                         margin: EdgeInsets.only(left: 14.h, bottom: 61.v),
@@ -146,13 +211,13 @@ class DetailsScreen extends StatelessWidget {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("msg_spread_your_arms".tr,
+                                  Text(stepData['title'],
                                       style: CustomTextStyles
                                           .bodyMediumOnErrorContainer),
                                   SizedBox(height: 4.v),
                                   SizedBox(
                                       width: 284.h,
-                                      child: Text("msg_to_make_the_gestures".tr,
+                                      child: Text(stepData['description'],
                                           maxLines: 3,
                                           overflow: TextOverflow.ellipsis,
                                           style: theme.textTheme.bodySmall))
@@ -170,7 +235,8 @@ class DetailsScreen extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("lbl_02".tr, style: CustomTextStyles.bodyMediumPrimary),
+                  Text(LocalizationExtension("lbl_02").tr,
+                      style: CustomTextStyles.bodyMediumPrimary),
                   Container(
                       padding: EdgeInsets.all(3.h),
                       decoration: AppDecoration.outlinePrimary2.copyWith(
@@ -195,93 +261,20 @@ class DetailsScreen extends StatelessWidget {
                         color: theme.colorScheme.primary))))
       ]),
       _buildStepText(context,
-          clappingBothHands: "lbl_rest_at_the_toe".tr,
-          description: "msg_the_basis_of_this".tr)
+          clappingBothHands: LocalizationExtension("lbl_rest_at_the_toe").tr,
+          description: LocalizationExtension("msg_the_basis_of_this").tr)
     ]);
   }
 
-  /// Section Widget
-  Widget _buildThree(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.only(right: 13.h),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Column(children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text("lbl_03".tr, style: CustomTextStyles.bodyMediumPrimary),
-              Container(
-                  padding: EdgeInsets.all(3.h),
-                  decoration: AppDecoration.outlinePrimary2
-                      .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-                  child: Container(
-                      height: 10.adaptSize,
-                      width: 10.adaptSize,
-                      decoration: BoxDecoration(
-                          color: theme.colorScheme.primary,
-                          borderRadius: BorderRadius.circular(5.h))))
-            ]),
-            SizedBox(height: 4.v),
-            Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                    padding: EdgeInsets.only(right: 9.h),
-                    child: SizedBox(
-                        height: 79.v,
-                        child: VerticalDivider(
-                            width: 1.h,
-                            thickness: 1.v,
-                            color: theme.colorScheme.primary))))
-          ]),
-          Expanded(
-              child: Padding(
-                  padding: EdgeInsets.only(left: 15.h, bottom: 23.v),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("msg_adjust_foot_movement".tr,
-                            style: CustomTextStyles.bodyMediumOnErrorContainer),
-                        SizedBox(height: 4.v),
-                        SizedBox(
-                            width: 278.h,
-                            child: Text("msg_jumping_jack_is".tr,
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                                style: theme.textTheme.bodySmall))
-                      ])))
-        ]));
-  }
-
-  /// Section Widget
-  Widget _buildStep4(BuildContext context) {
-    return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-      Padding(
-          padding: EdgeInsets.only(bottom: 77.v),
-          child: Text("lbl_04".tr, style: CustomTextStyles.bodyMediumPrimary)),
-      Container(
-          margin: EdgeInsets.only(left: 9.h, bottom: 77.v),
-          padding: EdgeInsets.all(3.h),
-          decoration: AppDecoration.outlinePrimary2
-              .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-          child: Container(
-              height: 10.adaptSize,
-              width: 10.adaptSize,
-              decoration: BoxDecoration(
-                  color: theme.colorScheme.primary,
-                  borderRadius: BorderRadius.circular(5.h)))),
-      _buildStepText(context,
-          clappingBothHands: "msg_clapping_both_hands".tr,
-          description: "msg_this_cannot_be_taken".tr)
-    ]);
-  }
 
   /// Section Widget
   Widget _buildStartExercising(BuildContext context) {
     return CustomElevatedButton(
-        text: "msg_start_exercising".tr,
+        text: LocalizationExtension("msg_start_exercising").tr,
         margin: EdgeInsets.only(left: 18.h, right: 18.h, bottom: 58.v),
         onPressed: () {
-          onTapStartExercising(context);
+          detailsController.start(widget.data['id'].toString());
+          Get.snackbar('App', 'Started Successfully');
         });
   }
 
