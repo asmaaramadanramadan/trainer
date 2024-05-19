@@ -127,6 +127,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         height: 44.v,
         leadingWidth: 389.h,
         leading: AppbarLeadingImage(
+            onTap: () => Get.back(),
             imagePath: ImageConstant.imgVectorOnerrorcontainer,
             margin: EdgeInsets.fromLTRB(23.h, 12.v, 357.h, 12.v)));
   }
@@ -269,13 +270,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   /// Section Widget
   Widget _buildStartExercising(BuildContext context) {
-    return CustomElevatedButton(
-        text: LocalizationExtension("msg_start_exercising").tr,
-        margin: EdgeInsets.only(left: 18.h, right: 18.h, bottom: 58.v),
-        onPressed: () {
-          detailsController.start(widget.data['id'].toString());
-          Get.snackbar('App', 'Started Successfully');
-        });
+    return Row(
+      children: [
+        Expanded(
+          child: CustomElevatedButton(
+              text: LocalizationExtension("msg_start_exercising").tr,
+              margin: EdgeInsets.only(left: 18.h, right: 18.h, bottom: 58.v),
+              onPressed: () {
+                detailsController.start(widget.data['id'].toString());
+                Get.snackbar('App', 'Started Successfully');
+              }),
+        ),
+        Expanded(
+          child: CustomElevatedButton(
+              text: LocalizationExtension("Join").tr,
+              margin: EdgeInsets.only(left: 18.h, right: 18.h, bottom: 58.v),
+              onPressed: () {
+                detailsController.join(widget.data['id'].toString());
+                Get.snackbar('App', 'Joined Successfully');
+              }),
+        ),
+      ],
+    );
   }
 
   /// Common widget
