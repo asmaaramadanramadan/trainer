@@ -65,38 +65,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onPageChanged: (value) => setState(() => _currentPage = value),
                 itemCount: contents.length,
                 itemBuilder: (context, i) {
-                  return Padding(
-                    padding: const EdgeInsets.all(40.0),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          contents[i].image,
-                          height: SizeConfig.blockV! * 35,
+                  return Column(
+                    children: [
+                      Image.asset(
+                        contents[i].image,
+                        height: SizeConfig.blockV! * 35,
+                      ),
+                      SizedBox(
+                        height: (height >= 840) ? 60 : 30,
+                      ),
+                      Text(
+                        contents[i].title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "Mulish",
+                          fontWeight: FontWeight.w600,
+                          fontSize: (width <= 550) ? 30 : 35,
                         ),
-                        SizedBox(
-                          height: (height >= 840) ? 60 : 30,
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        contents[i].desc,
+                        style: TextStyle(
+                          fontFamily: "Mulish",
+                          fontWeight: FontWeight.w300,
+                          fontSize: (width <= 550) ? 17 : 25,
                         ),
-                        Text(
-                          contents[i].title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: "Mulish",
-                            fontWeight: FontWeight.w600,
-                            fontSize: (width <= 550) ? 30 : 35,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          contents[i].desc,
-                          style: TextStyle(
-                            fontFamily: "Mulish",
-                            fontWeight: FontWeight.w300,
-                            fontSize: (width <= 550) ? 17 : 25,
-                          ),
-                          textAlign: TextAlign.center,
-                        )
-                      ],
-                    ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
                   );
                 },
               ),
