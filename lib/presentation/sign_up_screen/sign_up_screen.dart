@@ -65,6 +65,7 @@ class SignUpScreen extends StatelessWidget {
                                 password: password.text,
                                 image: signUpController.imageFile!)
                             .then((value) {
+                              print(value);
                           if (value['message'] ==
                               'Register Successfully, Please Complete Your Data') {
                             prefs.setString('token', value['data']['token']);
