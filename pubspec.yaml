@@ -32,8 +32,8 @@ dependencies:
   intl:
   chewie:
   video_player:
-
-dev_dependencies: 
+  syncfusion_flutter_charts: ^25.2.6
+dev_dependencies:
   flutter_test: 
     sdk: flutter
 flutter: 

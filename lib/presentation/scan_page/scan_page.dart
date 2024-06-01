@@ -1,13 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:camera/camera.dart';
-import 'package:fty/widgets/custom_icon_button.dart';
-import 'package:timer_count_down/timer_controller.dart';
-import 'package:timer_count_down/timer_count_down.dart';
-import '../../main.dart';
-import 'models/scan_model.dart';
 import 'package:flutter/material.dart';
-import 'package:fty/core/app_export.dart';
-import 'bloc/scan_bloc.dart';
-import 'package:fty/presentation/scan_one_bottomsheet/scan_one_bottomsheet.dart';
+import 'package:http/http.dart' as http;
+import 'package:timer_count_down/timer_controller.dart';
+
+import '../../main.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({Key? key}) : super(key: key);
@@ -69,6 +68,9 @@ class _ScanPageState extends State<ScanPage> {
                         onPressed: () async {
                           _controller.start();
                           XFile imagePicked = await controller.takePicture();
+                          print('sfsfasfsfsf');
+                          print(imagePicked.path);
+                          await postImage(imageFile: File(imagePicked.path));
                         },
                         icon: Icon(
                           Icons.camera,
@@ -123,43 +125,58 @@ class _ScanPageState extends State<ScanPage> {
             )));
   }
 
-  /// Section Widget
-  Widget _buildFrame(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(left: 1.h),
-        padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 7.v),
-        decoration: AppDecoration.fillWhiteA
-            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(bottom: 5.v),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("lbl_pancake".tr,
-                            style: CustomTextStyles
-                                .titleMediumBlack90001SemiBold_1),
-                        SizedBox(height: 10.v),
-                        Padding(
-                            padding: EdgeInsets.only(left: 4.h),
-                            child: Text("msg_native_to_see_details".tr,
-                                style: CustomTextStyles.bodyMediumBlack90001))
-                      ])),
-              Padding(
-                  padding: EdgeInsets.only(top: 9.v, right: 12.h, bottom: 10.v),
-                  child: CustomIconButton(
-                      height: 40.adaptSize,
-                      width: 40.adaptSize,
-                      padding: EdgeInsets.all(7.h),
-                      decoration: IconButtonStyleHelper.fillPrimaryTL19,
-                      onTap: () {
-                        // onTapBtnArrowLeft(context);
-                      },
-                      child: CustomImageView(
-                          imagePath: ImageConstant.imgArrowLeft)))
-            ]));
+//   Future<void> postImage(File imageFile) async {
+//     final String apiUrl = 'http://52.44.17.252:8000/detect';
+//     print('ssssssssssssssssssssssssssssss');
+//     lookupMimeType(imageFile.path);
+//
+//     var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
+//
+//     request.files.add(
+//       await http.MultipartFile.fromPath(
+//         'image',
+//         imageFile.path,
+//          contentType: mimeType != null ? MediaType.parse(mimeType) : null,
+//       ),
+//     );
+// print('ddddddddddddddddddddddddddd');
+//     try {
+//       var response = await request.send();
+//       print('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+//       print(response.statusCode);
+//       if (response.statusCode == 200) {
+//         print('Image uploaded successfully');
+//
+//         var data = await response.stream.bytesToString();
+//         print(data);
+//       } else {
+//         print('Failed to upload image: ${response.statusCode}');
+//       }
+//     } catch (e) {
+//       print('Error uploading image: $e');
+//     }
+//   }
+
+  Future postImage({required File imageFile}) async {
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('http://52.44.17.252:8000/detect'));
+
+    request.files
+        .add(await http.MultipartFile.fromPath('image', imageFile.path));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var data = await response.stream.bytesToString();
+      print(data);
+      return json.decode(data);
+    } else {
+      print(response.reasonPhrase);
+    }
   }
 }
