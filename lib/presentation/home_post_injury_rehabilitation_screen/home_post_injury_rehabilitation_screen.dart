@@ -10,7 +10,6 @@ import 'package:fty/widgets/custom_search_view.dart';
 import 'package:get/get.dart';
 
 import '../../main.dart';
-
 import 'widgets/frame2_item_widget.dart';
 import 'widgets/homepostinjuryrehabilitation_item_widget.dart';
 
@@ -96,7 +95,6 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildTopBg(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 12.v),
@@ -166,7 +164,6 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildBanner(BuildContext context) {
     return SizedBox(
       height: 173.v,
@@ -241,7 +238,6 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildHomepostinjuryrehabilitation(BuildContext context) {
     return FutureBuilder(
         future: homeController.getBestForYou(),
