@@ -8,8 +8,6 @@ import 'package:fty/core/app_export.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-
-
 import '../../widgets/custom_elevated_button.dart';
 import 'controller/profile_controller.dart';
 
@@ -32,7 +30,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _Profil_ScreenState extends State<ProfileScreen> {
-  @override
   File? imageFileFirst;
   String imageFirst = "";
   final picker = ImagePicker();
@@ -68,11 +65,7 @@ class _Profil_ScreenState extends State<ProfileScreen> {
         ? Image.network(
       imageUrl,
     )
-        : Image.asset(
-      "assets/images/add_photo.png",
-      height: 100,
-      width: 100,
-    );
+            : Icon(Icons.add_a_photo);
   }
 
   Future<void> _showImagePickerDialog(
@@ -402,9 +395,9 @@ class _Profil_ScreenState extends State<ProfileScreen> {
                           prefixIcon: const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Icon(
-                              Icons.phone,
-                              size: 20,
-                            ),
+                                Icons.email,
+                                size: 20,
+                              ),
                           ),
                           prefixIconConstraints:
                           const BoxConstraints(maxHeight: 35),

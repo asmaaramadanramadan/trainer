@@ -1,16 +1,16 @@
-import 'package:fty/main.dart';
-import 'package:fty/presentation/login_screen/controller/login_controlller.dart';
-import 'package:fty/widgets/app_bar/custom_app_bar.dart';
-import 'package:fty/widgets/app_bar/appbar_subtitle.dart';
-import 'package:fty/core/utils/validation_functions.dart';
-import 'package:fty/widgets/custom_text_form_field.dart';
-import 'package:fty/widgets/custom_elevated_button.dart';
-import 'package:get/get.dart';
-import '../home_navigate/home_navigate.dart';
-import '../home_post_injury_rehabilitation_screen/home_post_injury_rehabilitation_screen.dart';
-import '../sign_up_screen/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
+import 'package:fty/core/utils/validation_functions.dart';
+import 'package:fty/main.dart';
+import 'package:fty/presentation/login_screen/controller/login_controlller.dart';
+import 'package:fty/widgets/app_bar/appbar_subtitle.dart';
+import 'package:fty/widgets/app_bar/custom_app_bar.dart';
+import 'package:fty/widgets/custom_elevated_button.dart';
+import 'package:fty/widgets/custom_text_form_field.dart';
+import 'package:get/get.dart';
+
+import '../home_navigate/home_navigate.dart';
+import '../sign_up_screen/sign_up_screen.dart';
 
 // ignore_for_file: must_be_immutable
 class LoginScreen extends StatelessWidget {
@@ -54,10 +54,8 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(height: 29.v),
                               _buildContainer(context),
                               SizedBox(height: 58.v),
-                              _buildSubContainer(context),
-                              SizedBox(height: 5.v)
-                            ]))))),
-            bottomNavigationBar: _buildButtonsContainer(context)));
+                      ]))))),
+    ));
   }
 
   /// Section Widget
@@ -177,14 +175,6 @@ class LoginScreen extends StatelessWidget {
                         loginController
                             .login(email.text, password.text)
                             .then((value) {
-                              print(value);
-                              print(value);
-                              print(value);
-                              print(value);
-                              print(value);
-                              print(value);
-                              print(value);
-                              print(value);
                               print(value);
                               print(value);
                           if (value['message'] == '') {

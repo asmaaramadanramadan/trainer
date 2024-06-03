@@ -6,15 +6,15 @@ import '../../widgets/custom_elevated_button.dart';
 import 'controller/profile_controller.dart';
 
 class EditPassword extends StatelessWidget {
-  const EditPassword();
+  EditPassword();
 
+  ProfileController con = Get.put(ProfileController());
+
+  final oldPasswordCtrl = TextEditingController();
+  final newPasswordCtrl = TextEditingController();
+  final confirmPasswordCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    ProfileController con =Get.put(ProfileController());
-
-    final oldPasswordCtrl = TextEditingController();
-    final newPasswordCtrl = TextEditingController();
-    final confirmPasswordCtrl = TextEditingController();
     return SafeArea(
       child: Scaffold(
         body: Column(

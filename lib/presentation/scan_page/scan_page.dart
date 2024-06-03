@@ -3,6 +3,9 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:fty/presentation/scan_page/scan_details.dart';
+import 'package:fty/presentation/scan_page/scan_model.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:timer_count_down/timer_controller.dart';
 
@@ -68,9 +71,26 @@ class _ScanPageState extends State<ScanPage> {
                         onPressed: () async {
                           _controller.start();
                           XFile imagePicked = await controller.takePicture();
-                          print('sfsfasfsfsf');
-                          print(imagePicked.path);
-                          await postImage(imageFile: File(imagePicked.path));
+                          await postImage(imageFile: File(imagePicked.path))
+                              .then((value) {
+                            print(value);
+                            Get.to(NutritionDetailScreen(
+                              nutritionData: NutritionData.fromJson({
+                                "calories_per_100g": value['data'][0]
+                                    ['calories_per_100g'],
+                                "carbohydrates_per_100g": value['data'][0]
+                                    ['carbohydrates_per_100g'],
+                                "fats_per_100g": value['data'][0]
+                                    ['fats_per_100g'],
+                                "fiber_per_100g": value['data'][0]
+                                    ['fiber_per_100g'],
+                                "name": value['data'][0]['name'],
+                                "protein_per_100g": value['data'][0]
+                                    ['protein_per_100g'],
+                              }),
+                              imageFile: File(imagePicked.path),
+                            ));
+                          });
                         },
                         icon: Icon(
                           Icons.camera,

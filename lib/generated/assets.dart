@@ -20,6 +20,10 @@ class Assets {
   static const String fontsRobotoRomanMedium = 'assets/fonts/RobotoRomanMedium.ttf';
   static const String fontsRobotoRomanRegular = 'assets/fonts/RobotoRomanRegular.ttf';
   static const String fontsUrbanistRomanBold = 'assets/fonts/UrbanistRomanBold.ttf';
+  static const String imagesBirthdate = 'assets/images/birthdate.png';
+  static const String imagesDistance = 'assets/images/distance.png';
+  static const String imagesExercise = 'assets/images/exercise.png';
+  static const String imagesFemale = 'assets/images/female.png';
   static const String imagesImageNotFound = 'assets/images/image_not_found.png';
   static const String imagesImgAbstract = 'assets/images/img_abstract.png';
   static const String imagesImgAbstractPrimary = 'assets/images/img_abstract_primary.svg';
@@ -163,6 +167,12 @@ class Assets {
   static const String imagesImgVideoSection = 'assets/images/img_video_section.svg';
   static const String imagesImgVoice = 'assets/images/img_voice.svg';
   static const String imagesImgVoiceOnerrorcontainer = 'assets/images/img_voice_onerrorcontainer.svg';
+  static const String imagesLength = 'assets/images/Length.png';
+  static const String imagesLocation = 'assets/images/location.png';
+  static const String imagesMale = 'assets/images/male.png';
+  static const String imagesMuscle = 'assets/images/muscle.png';
+  static const String imagesWeight = 'assets/images/Weight.png';
+  static const String onboardingDownload = 'assets/onboarding/download.jpeg';
   static const String onboardingImg1 = 'assets/onboarding/img1.jpg';
   static const String onboardingImg2 = 'assets/onboarding/img2.jpg';
   static const String onboardingImg3 = 'assets/onboarding/img3.jpg';

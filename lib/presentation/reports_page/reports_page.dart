@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
 import 'package:fty/presentation/reports_edit_weight_dialog/reports_edit_weight_dialog.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ReportsPage extends StatelessWidget {
   const ReportsPage({Key? key}) : super(key: key);
@@ -55,192 +55,40 @@ class ReportsPage extends StatelessWidget {
                                                         style: CustomTextStyles
                                                             .titleSmallLatoGray900Bold))),
                                             SizedBox(height: 37.v),
-                                            Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 23.h),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .center,
-                                                    children: [
-                                                      Column(
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
-                                                          children: [
-                                                            Align(
-                                                                alignment: Alignment
-                                                                    .centerLeft,
-                                                                child: Text(
-                                                                    LocalizationExtension(
-                                                                        "lbl_143_8")
-                                                                        .tr,
-                                                                    style: CustomTextStyles
-                                                                        .bodySmallRobotoGray700dd9)),
-                                                            SizedBox(
-                                                                height: 24.v),
-                                                            Align(
-                                                                alignment: Alignment
-                                                                    .centerLeft,
-                                                                child: Text(
-                                                                    LocalizationExtension(
-                                                                        "lbl_143_6")
-                                                                        .tr,
-                                                                    style: CustomTextStyles
-                                                                        .bodySmallRobotoGray700dd9)),
-                                                            SizedBox(
-                                                                height: 24.v),
-                                                            Text(
-                                                                LocalizationExtension(
-                                                                    "lbl_143_4")
-                                                                    .tr,
-                                                                style: CustomTextStyles
-                                                                    .bodySmallRobotoGray700dd9),
-                                                            SizedBox(
-                                                                height: 24.v),
-                                                            Text(
-                                                                LocalizationExtension(
-                                                                    "lbl_143_2")
-                                                                    .tr,
-                                                                style: CustomTextStyles
-                                                                    .bodySmallRobotoGray700dd9),
-                                                            SizedBox(
-                                                                height: 24.v),
-                                                            Text(
-                                                                LocalizationExtension(
-                                                                    "lbl_143")
-                                                                    .tr,
-                                                                style: CustomTextStyles
-                                                                    .bodySmallRobotoGray700dd9)
-                                                          ]),
-                                                      CustomImageView(
-                                                          imagePath:
-                                                          ImageConstant
-                                                              .imgFrame34314,
-                                                          height: 151.v,
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              left: 5.h))
-                                                    ])),
-                                            SizedBox(height: 4.v),
-                                            Align(
-                                                alignment:
-                                                Alignment.centerRight,
-                                                child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 73.h,
-                                                        right: 23.h),
-                                                    child: Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .end,
-                                                        children: [
-                                                          Text(
-                                                              LocalizationExtension(
-                                                                  "lbl_14").tr,
-                                                              style: CustomTextStyles
-                                                                  .bodySmallRobotoGray700dd),
-                                                          Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  30.h),
-                                                              child: Text(
-                                                                  LocalizationExtension(
-                                                                      "lbl_15")
-                                                                      .tr,
-                                                                  style: CustomTextStyles
-                                                                      .bodySmallRobotoGray700dd)),
-                                                          Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  30.h),
-                                                              child: Text(
-                                                                  LocalizationExtension(
-                                                                      "lbl_16")
-                                                                      .tr,
-                                                                  style: CustomTextStyles
-                                                                      .bodySmallRobotoGray700dd)),
-                                                          Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  30.h),
-                                                              child: Text(
-                                                                  LocalizationExtension(
-                                                                      "lbl_17")
-                                                                      .tr,
-                                                                  style: CustomTextStyles
-                                                                      .bodySmallRobotoGray700dd)),
-                                                          Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  30.h),
-                                                              child: Text(
-                                                                  LocalizationExtension(
-                                                                      "lbl_18")
-                                                                      .tr,
-                                                                  style: CustomTextStyles
-                                                                      .bodySmallRobotoGray700dd)),
-                                                          Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  30.h),
-                                                              child: Text(
-                                                                  LocalizationExtension(
-                                                                      "lbl_19")
-                                                                      .tr,
-                                                                  style: CustomTextStyles
-                                                                      .bodySmallRobotoGray700dd)),
-                                                          Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  30.h),
-                                                              child: Text(
-                                                                  LocalizationExtension(
-                                                                      "lbl_20")
-                                                                      .tr,
-                                                                  style: CustomTextStyles
-                                                                      .bodySmallRobotoGray700dd))
-                                                        ]))),
-                                            SizedBox(height: 19.v),
-                                            Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10.h),
-                                                    child: Row(children: [
-                                                      Container(
-                                                          height: 12.adaptSize,
-                                                          width: 12.adaptSize,
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              bottom: 2.v),
-                                                          decoration: BoxDecoration(
-                                                              color: appTheme
-                                                                  .blueA40002)),
-                                                      Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              left: 8.h),
-                                                          child: Text(
-                                                              LocalizationExtension(
-                                                                  "lbl_weight")
-                                                                  .tr,
-                                                              style: CustomTextStyles
-                                                                  .labelLargeRobotoSecondaryContainer))
-                                                    ]))),
-                                            SizedBox(height: 15.v),
-                                            _buildFrame2(context),
-                                            SizedBox(height: 7.v),
-                                            _buildFrame3(context),
-                                            SizedBox(height: 7.v),
-                                            _buildFrame4(context),
-                                            SizedBox(height: 9.v)
+                                            Center(
+                                                child: Container(
+                                                    child: SfCartesianChart(
+                                                        // Initialize category axis
+                                                        primaryXAxis:
+                                                            CategoryAxis(),
+                                                        series: <LineSeries<
+                                                            SalesData, String>>[
+                                                  LineSeries<SalesData, String>(
+                                                      // Bind data source
+                                                      dataSource: <SalesData>[
+                                                        ...List.generate(
+                                                            data['data'][
+                                                                    'exercises']
+                                                                .length,
+                                                            (index) => SalesData(
+                                                                data['data'][
+                                                                            'exercises']
+                                                                        [index]
+                                                                    ['date'],
+                                                                double.parse(data[
+                                                                            'data']
+                                                                        ['exercises'][index]
+                                                                    ['calories_burn'])))
+                                                      ],
+                                                      xValueMapper:
+                                                          (SalesData sales,
+                                                                  _) =>
+                                                              sales.year,
+                                                      yValueMapper:
+                                                          (SalesData sales,
+                                                                  _) =>
+                                                              sales.sales)
+                                                ]))),
                                           ])),
                                   SizedBox(height: 10.v),
                                 ]))));
@@ -284,7 +132,7 @@ class ReportsPage extends StatelessWidget {
                                       .toUpperCase(),
                                       style: CustomTextStyles
                                           .bodySmallLatoOnErrorContainer),
-                                  Text(LocalizationExtension("lbl_5").tr,
+                                  Text(data['data']['total_count'].toString(),
                                       style: CustomTextStyles.titleSmallLato)
                                 ])),
                         Spacer(flex: 50),
@@ -326,7 +174,7 @@ class ReportsPage extends StatelessWidget {
                                           .toUpperCase(),
                                       style: CustomTextStyles
                                           .bodySmallLatoOnErrorContainer),
-                                  Text(LocalizationExtension("lbl_75").tr,
+                                  Text(data['data']['total_time'].toString(),
                                       style: CustomTextStyles.titleSmallLato)
                                 ]))
                       ]))
@@ -489,4 +337,11 @@ class ReportsPage extends StatelessWidget {
       print(response.reasonPhrase);
     }
   }
+}
+
+class SalesData {
+  SalesData(this.year, this.sales);
+
+  final String year;
+  final double sales;
 }

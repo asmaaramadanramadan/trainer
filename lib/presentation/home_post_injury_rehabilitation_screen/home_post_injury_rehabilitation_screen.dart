@@ -3,7 +3,6 @@ import 'package:fty/core/app_export.dart';
 import 'package:fty/presentation/home_post_injury_rehabilitation_screen/controller/home_controller.dart';
 import 'package:fty/widgets/app_bar/appbar_leading_circleimage.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_eight.dart';
-import 'package:fty/widgets/app_bar/appbar_subtitle_ten.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_iconbutton.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:fty/widgets/app_bar/custom_app_bar.dart';
@@ -11,10 +10,8 @@ import 'package:fty/widgets/custom_search_view.dart';
 import 'package:get/get.dart';
 
 import '../../main.dart';
-import 'models/frame2_item_model.dart';
-import 'models/frame3_item_model.dart';
+
 import 'widgets/frame2_item_widget.dart';
-import 'widgets/frame3_item_widget.dart';
 import 'widgets/homepostinjuryrehabilitation_item_widget.dart';
 
 class HomePostInjuryRehabilitationScreen extends StatelessWidget {
@@ -86,7 +83,7 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 12.v),
-                        _buildFrame1(context),
+
                       ],
                     ),
                   ),
@@ -112,33 +109,16 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
             height: 55.v,
             leadingWidth: 72.h,
             leading: AppbarLeadingCircleimage(
-              imagePath: ImageConstant.imgEllipse2046,
+              imagePath: 'assets/onboarding/download.jpeg',
               margin: EdgeInsets.only(
                 left: 18.h,
                 bottom: 1.v,
               ),
             ),
-            title: Container(
-              height: 53.61.v,
-              width: 207.h,
-              margin: EdgeInsets.only(left: 8.h),
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  AppbarSubtitleEight(
-                    text: LocalizationExtension("lbl_hello_hager").tr,
-                    margin: EdgeInsets.only(
-                      right: 84.h,
-                      bottom: 23.v,
-                    ),
-                  ),
-                  AppbarSubtitleTen(
-                    text:
-                        LocalizationExtension("msg_post_injury_rehabilitation")
-                            .tr,
-                    margin: EdgeInsets.only(top: 29.v),
-                  ),
-                ],
+            title: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AppbarSubtitleEight(
+                text: LocalizationExtension("Hallo").tr,
               ),
             ),
             actions: [
@@ -314,7 +294,6 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
                 },
                 itemCount: data['data'].length,
                 itemBuilder: (context, index) {
-                  Frame2ItemModel model = Frame2ItemModel();
                   return Frame2ItemWidget(
                     data['data'][index],
                   );
@@ -329,29 +308,4 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
         });
   }
 
-  /// Section Widget
-  Widget _buildFrame1(BuildContext context) {
-    return SizedBox(
-      height: 105.v,
-      child: ListView.separated(
-        padding: EdgeInsets.only(left: 18.h),
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (
-          context,
-          index,
-        ) {
-          return SizedBox(
-            width: 12.h,
-          );
-        },
-        itemCount: 0,
-        itemBuilder: (context, index) {
-          Frame3ItemModel model = Frame3ItemModel();
-          return Frame3ItemWidget(
-            model,
-          );
-        },
-      ),
-    );
-  }
 }
