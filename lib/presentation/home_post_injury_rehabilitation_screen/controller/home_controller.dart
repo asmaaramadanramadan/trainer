@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
+
   Future getBestForYou() async {
     var headers = {'Authorization': 'Bearer ${prefs.getString('token') ?? ''}'};
     var request = http.Request(

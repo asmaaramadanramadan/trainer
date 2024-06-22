@@ -19,9 +19,6 @@ class ReportsPage extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     Map data = snapshot.data as Map;
-                    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-                    print(data);
-                    print(data);
                     return Container(
                         width: double.maxFinite,
                         decoration: AppDecoration.fillWhiteA,
@@ -58,37 +55,48 @@ class ReportsPage extends StatelessWidget {
                                             Center(
                                                 child: Container(
                                                     child: SfCartesianChart(
-                                                        // Initialize category axis
+                                                      // Initialize category axis
                                                         primaryXAxis:
-                                                            CategoryAxis(),
+                                                        CategoryAxis(),
                                                         series: <LineSeries<
-                                                            SalesData, String>>[
-                                                  LineSeries<SalesData, String>(
-                                                      // Bind data source
-                                                      dataSource: <SalesData>[
-                                                        ...List.generate(
-                                                            data['data'][
+                                                            SalesData,
+                                                            String>>[
+                                                          LineSeries<
+                                                              SalesData,
+                                                              String>(
+                                                            // Bind data source
+                                                              dataSource: <
+                                                                  SalesData>[
+                                                                ...List
+                                                                    .generate(
+                                                                    data['data'][
                                                                     'exercises']
-                                                                .length,
-                                                            (index) => SalesData(
-                                                                data['data'][
+                                                                        .length,
+                                                                        (
+                                                                        index) =>
+                                                                        SalesData(
+                                                                            data['data'][
                                                                             'exercises']
-                                                                        [index]
-                                                                    ['date'],
-                                                                double.parse(data[
-                                                                            'data']
-                                                                        ['exercises'][index]
-                                                                    ['calories_burn'])))
-                                                      ],
-                                                      xValueMapper:
-                                                          (SalesData sales,
+                                                                            [index]
+                                                                            ['date'],
+                                                                            double
+                                                                                .parse(
+                                                                                data[
+                                                                                'data']
+                                                                                ['exercises'][index]
+                                                                                ['calories_burn'])))
+                                                              ],
+                                                              xValueMapper:
+                                                                  (
+                                                                  SalesData sales,
                                                                   _) =>
                                                               sales.year,
-                                                      yValueMapper:
-                                                          (SalesData sales,
+                                                              yValueMapper:
+                                                                  (
+                                                                  SalesData sales,
                                                                   _) =>
                                                               sales.sales)
-                                                ]))),
+                                                        ]))),
                                           ])),
                                   SizedBox(height: 10.v),
                                 ]))));

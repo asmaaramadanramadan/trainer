@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../core/app_export.dart';
 
 class CustomSearchView extends StatelessWidget {
@@ -88,7 +89,6 @@ class CustomSearchView extends StatelessWidget {
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
-          autofocus: autofocus!,
           style: textStyle ?? CustomTextStyles.titleSmallMontserrat,
           keyboardType: textInputType,
           maxLines: maxLines ?? 1,

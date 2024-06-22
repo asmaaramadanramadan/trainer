@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:fty/main.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +10,8 @@ class InformationController extends GetxController {
   String height = '';
   String gender = '';
   String exercise = '';
+  String level = '';
+  String goal = '';
 
   Future postData({
     required String date,
@@ -48,7 +49,16 @@ class InformationController extends GetxController {
       'muscle_id': '1',
       'injury_date': '2023-11-23',
       'injury_description': 'asdasdasdasdasdsad',
-      'treatment_time': 'sdasdasdasdsadsdadsads'
+      'treatment_time': 'sdasdasdasdsadsdadsads',
+      'activity_level': level == 'Sedentary'
+          ? 'sedentry'
+          : level == 'Light activity'
+              ? 'light_activity'
+              : level == 'Moderate activity'
+                  ? 'moderate_activity'
+                  : level == 'Vigorous activity'
+                      ? 'vigorous_activity'
+                      : 'very_vigorous_activity'
     });
 
     request.headers.addAll(headers);

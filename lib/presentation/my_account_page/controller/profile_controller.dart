@@ -58,6 +58,7 @@ print(response.statusCode);
     updateIsLoading(false);
 
   }
+
   Future updatePassword(Map<String, String> data) async {
     updateIsLoading(true);
     var headers = {'Authorization': 'Bearer ${prefs.getString('token') ?? ''}'};

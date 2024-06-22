@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fty/presentation/onboarding_screen/size_config.dart';
 import 'package:get/route_manager.dart';
 
@@ -38,7 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         borderRadius: BorderRadius.all(
           Radius.circular(50),
         ),
-        color: Color(0xFF000000),
+        color: Colors.blue,
       ),
       margin: const EdgeInsets.only(right: 5),
       height: 10,
@@ -75,7 +74,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: SizeConfig.blockV! * 35,
                         ),
                         SizedBox(
-                          height:30,
+                          height:10,
                         ),
                         Flexible(
                           child: Text(
@@ -89,7 +88,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 15),
+
                         Text(
                           contents[i].desc,
                           style: TextStyle(
@@ -134,7 +133,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
+                              backgroundColor: Colors.blue,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50),
                               ),
@@ -184,7 +183,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   ),
                                 ),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black,
+                                  backgroundColor: Colors.blue,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),

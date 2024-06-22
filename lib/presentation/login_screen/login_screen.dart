@@ -68,29 +68,16 @@ class LoginScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildContainer(BuildContext context) {
-    return SizedBox(
-        height: 414.v,
-        width: double.maxFinite,
-        child: Stack(alignment: Alignment.bottomCenter, children: [
-          Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                  height: 80.adaptSize,
-                  width: 80.adaptSize,
-                  padding: EdgeInsets.all(20.h),
-                  decoration: AppDecoration.outlinePrimary
-                      .copyWith(borderRadius: BorderRadiusStyle.circleBorder40),
-                  child: CustomImageView(
-                      imagePath: ImageConstant.imgIconPrimary40x40,
-                      height: 40.adaptSize,
-                      width: 40.adaptSize,
-                      alignment: Alignment.center))),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 18.h),
-                  decoration: AppDecoration.outlinePrimary3,
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+    return Stack(alignment: Alignment.bottomCenter, children: [
+      Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 18.h),
+              decoration: AppDecoration.outlinePrimary3,
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     SizedBox(height: 49.v),
                     Align(
                         alignment: Alignment.centerLeft,
@@ -148,6 +135,38 @@ class LoginScreen extends StatelessWidget {
                         obscureText: true,
                         contentPadding: EdgeInsets.only(
                             left: 12.h, top: 12.v, bottom: 12.v)),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        '*  at least 8 characters long',
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        '*  contain an uppercase letter',
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        '*  a lowercase letter',
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        '*   and a number.',
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                     SizedBox(height: 11.v),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,14 +194,17 @@ class LoginScreen extends StatelessWidget {
                         loginController
                             .login(email.text, password.text)
                             .then((value) {
-                              print(value);
-                              print(value);
+                          print(value);
+                          print(value);
                           if (value['message'] == '') {
                             prefs.setString('token', value['data']['token']);
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => HomeNavigate()));
+                          } else {
+                            Get.snackbar('APP', 'Wrong Data',
+                                snackPosition: SnackPosition.BOTTOM);
                           }
                         });
                       },
@@ -210,68 +232,10 @@ class LoginScreen extends StatelessWidget {
                           margin: EdgeInsets.only(left: 4.h))
                     ])
                   ])))
-        ]));
+    ]);
   }
 
-  /// Section Widget
-  Widget _buildSubContainer(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 18.h),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(top: 11.v, bottom: 8.v),
-                  child: SizedBox(width: 98.h, child: Divider())),
-              Text(LocalizationExtension("msg_or_continue_with").tr,
-                  style: theme.textTheme.bodyMedium),
-              Padding(
-                  padding: EdgeInsets.only(top: 11.v, bottom: 8.v),
-                  child: SizedBox(width: 98.h, child: Divider()))
-            ]));
-  }
 
-  /// Section Widget
-  Widget _buildButtonsContainer(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.only(bottom: 67.v),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Container(
-              height: 48.v,
-              width: 104.h,
-              padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
-              decoration: AppDecoration.greyWhite
-                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgIconRed500,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  alignment: Alignment.center)),
-          Container(
-              height: 48.v,
-              width: 104.h,
-              padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
-              decoration: AppDecoration.greyWhite
-                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgIconBlueA40001,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  alignment: Alignment.center)),
-          Container(
-              height: 48.v,
-              width: 104.h,
-              padding: EdgeInsets.symmetric(horizontal: 39.h, vertical: 11.v),
-              decoration: AppDecoration.greyWhite
-                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgIconOnerrorcontainer,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  alignment: Alignment.center))
-        ]));
-  }
 
   /// Navigates to the forgotPasswordScreen when the action is triggered.
   onTapTxtForgotPassword(BuildContext context) {

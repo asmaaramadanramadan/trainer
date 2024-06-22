@@ -91,7 +91,6 @@ class CustomTextFormField extends StatelessWidget {
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
-          autofocus: autofocus!,
           style: textStyle ?? theme.textTheme.titleLarge,
           obscureText: obscureText!,
           textInputAction: textInputAction,

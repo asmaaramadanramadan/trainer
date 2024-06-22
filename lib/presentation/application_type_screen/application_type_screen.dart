@@ -1,14 +1,14 @@
-import 'package:fty/presentation/home_navigate/home_navigate.dart';
-import 'package:fty/widgets/app_bar/custom_app_bar.dart';
-import 'package:fty/widgets/app_bar/appbar_subtitle_two.dart';
-import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:another_stepper/dto/stepper_data.dart';
-import 'package:fty/widgets/custom_elevated_button.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import '../information_screen/controller/information_controller.dart';
+import 'package:another_stepper/widgets/another_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
+import 'package:fty/widgets/app_bar/appbar_subtitle_two.dart';
+import 'package:fty/widgets/app_bar/custom_app_bar.dart';
+import 'package:fty/widgets/custom_elevated_button.dart';
+import 'package:get/get.dart';
+
+import '../application_type_active_screen/application_type_active_screen.dart';
+import '../information_screen/controller/information_controller.dart';
 
 class ApplicationTypeScreen extends StatefulWidget {
   const ApplicationTypeScreen({Key? key}) : super(key: key);
@@ -371,37 +371,7 @@ class _ApplicationTypeScreenState extends State<ApplicationTypeScreen> {
         text: LocalizationExtension("lbl_next").tr,
         margin: EdgeInsets.only(left: 18.h, right: 18.h, bottom: 58.v),
         onPressed: () async {
-          String originalDateString = informationController.selectedTime;
-
-          List<String> dateComponents = originalDateString.split('-');
-
-          // Create a DateTime object from the components
-          DateTime originalDate = DateTime(
-            int.parse(dateComponents[0]), // Year
-            int.parse(dateComponents[1]), // Month
-            int.parse(dateComponents[2]), // Day
-          );
-
-          // Format the DateTime object into the desired string format
-          String formattedDate = DateFormat('yyyy-MM-dd').format(originalDate);
-
-          Get.dialog(Center(
-            child: CircularProgressIndicator(),
-          ));
-          await informationController
-              .postData(
-                  date: formattedDate,
-                  weight: informationController.weight,
-                  height: informationController.height,
-                  exercise: selectIndex == 1
-                      ? 'regular exercise'
-                      : selectIndex == 2
-                          ? 'post injury'
-                          : 'mental health',
-                  gender: informationController.gender)
-              .then((value) {
-            onTapNext(context);
-          });
+          onTapNext(context);
         });
   }
 
@@ -414,6 +384,11 @@ class _ApplicationTypeScreenState extends State<ApplicationTypeScreen> {
 
   /// Navigates to the applicationTypeActiveScreen when the action is triggered.
   onTapNext(BuildContext context) {
-    Get.offAll(HomeNavigate());
+    informationController.exercise = selectIndex == 1
+        ? 'regular exercise'
+        : selectIndex == 2
+            ? 'post injury'
+            : 'mental health';
+    Get.to(ApplicationTypeActiveScreen());
   }
 }

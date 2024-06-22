@@ -12,7 +12,7 @@ class OnboardingContents {
 
 List<OnboardingContents> contents = [
   OnboardingContents(
-    title: "Track Your work and get the result",
+    title: "Track Your work ",
     image: "assets/onboarding/img1.jpg",
     desc: "The gym offers a diverse range of exercise options, catering to different fitness preferences and goals, ensuring there's something for everyone to enjoy and benefit from.",
   ),

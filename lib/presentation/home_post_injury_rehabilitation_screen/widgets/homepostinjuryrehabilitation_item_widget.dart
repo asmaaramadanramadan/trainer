@@ -28,11 +28,15 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
           borderRadius: BorderRadiusStyle.roundedBorder8,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image(
                 image: NetworkImage(
-                    homepostinjuryrehabilitationItemModelObj['image'])),
+                  homepostinjuryrehabilitationItemModelObj['image']),
+              width: 100,
+              height: 100,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
