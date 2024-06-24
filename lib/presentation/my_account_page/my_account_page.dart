@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
 import 'package:fty/presentation/exercise_screen/my_exercise.dart';
 import 'package:fty/presentation/meals_screen/meals.dart';
+import 'package:fty/presentation/work_plan/work_plan.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_four.dart';
 import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/custom_icon_button.dart';
@@ -46,6 +47,18 @@ class MyAccountPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16.v),
+                  Divider(),
+                  SizedBox(height: 15.v),
+                  InkWell(
+                    onTap: () {
+                      Get.to(WorkPlan());
+                    },
+                    child: _buildAutoLayoutHorizontal(
+                      context,
+                      setting: 'Work Plan',
+                      arrowRight: ImageConstant.imgArrowRightRedA200,
+                    ),
+                  ),
                   Divider(),
                   SizedBox(height: 15.v),
                   InkWell(

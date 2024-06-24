@@ -19,6 +19,7 @@ import '../presentation/search_screen/search_screen.dart';
 import '../presentation/setting_screen/setting_screen.dart';
 import '../presentation/sign_up_screen/sign_up_screen.dart';
 import '../presentation/verification_code_forgot_password_screen/verification_code_forgot_password_screen.dart';
+import '../presentation/work_plan/work_plan.dart';
 import '../presentation/your_height_screen/your_height_screen.dart';
 
 class AppRoutes {
@@ -114,6 +115,6 @@ class AppRoutes {
         createANewPasswordScreen: (context) => CreateANewPasswordScreen(),
 
         initialRoute: (context) =>
-                prefs.getString('token') != null ? HomeNavigate() : OnboardingScreen()
+                prefs.getString('token') != null ? HomeNavigate() : WorkPlan()
       };
 }
