@@ -112,7 +112,9 @@ class AppRoutes {
         verificationCodeForgotPasswordScreen: (context) =>
             VerificationCodeForgotPasswordScreen(),
         createANewPasswordScreen: (context) => CreateANewPasswordScreen(),
+        exerciseScreen: (context) => ExerciseScreen(),
 
+        // initialRoute: (context) => SignUpScreen()
         initialRoute: (context) =>
                 prefs.getString('token') != null ? HomeNavigate() : OnboardingScreen()
       };

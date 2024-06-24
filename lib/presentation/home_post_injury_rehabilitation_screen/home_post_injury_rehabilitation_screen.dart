@@ -3,13 +3,14 @@ import 'package:fty/core/app_export.dart';
 import 'package:fty/presentation/home_post_injury_rehabilitation_screen/controller/home_controller.dart';
 import 'package:fty/widgets/app_bar/appbar_leading_circleimage.dart';
 import 'package:fty/widgets/app_bar/appbar_subtitle_eight.dart';
-import 'package:fty/widgets/app_bar/appbar_trailing_iconbutton.dart';
 import 'package:fty/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:fty/widgets/app_bar/custom_app_bar.dart';
 import 'package:fty/widgets/custom_search_view.dart';
 import 'package:get/get.dart';
 
 import '../../main.dart';
+import '../my_account_page/controller/profile_controller.dart';
+import '../my_account_page/profile_screen.dart';
 import 'widgets/frame2_item_widget.dart';
 import 'widgets/homepostinjuryrehabilitation_item_widget.dart';
 
@@ -96,72 +97,60 @@ class HomePostInjuryRehabilitationScreen extends StatelessWidget {
   }
 
   Widget _buildTopBg(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 12.v),
-      decoration: AppDecoration.fillWhiteA,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(height: 4.v),
-          CustomAppBar(
-            height: 55.v,
-            leadingWidth: 72.h,
-            leading: AppbarLeadingCircleimage(
-              imagePath: 'assets/onboarding/download.jpeg',
-              margin: EdgeInsets.only(
-                left: 18.h,
-                bottom: 1.v,
-              ),
-            ),
-            title: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AppbarSubtitleEight(
-                text: LocalizationExtension("Hallo").tr,
-              ),
-            ),
-            actions: [
-              AppbarTrailingImage(
-                imagePath: ImageConstant.imgArrowdown,
-                margin: EdgeInsets.only(
-                  left: 4.h,
-                  top: 30.v,
-                  right: 1.h,
-                ),
-              ),
-              AppbarTrailingIconbutton(
-                imagePath: ImageConstant.imgNotification,
-                margin: EdgeInsets.fromLTRB(19.h, 6.v, 19.h, 10.v),
-              ),
-            ],
-          ),
-          SizedBox(height: 10.v),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: CustomSearchView(
-                    controller: TextEditingController(),
-                    hintText: LocalizationExtension("lbl_search_bar").tr,
+    ProfileController controller = Get.put(ProfileController());
+
+    return FutureBuilder(
+        future: controller.getDataProfile(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            Map data=snapshot.data as Map;
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 12.v),
+              decoration: AppDecoration.fillWhiteA,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 4.v),
+                  CustomAppBar(
+                    height: 55.v,
+                    leadingWidth: 72.h,
+                    leading: AppbarLeadingCircleimage(
+                      imagePath: data['data']['image'],
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ProfileSettings()));
+                      },
+                      margin: EdgeInsets.only(
+                        left: 18.h,
+                        bottom: 1.v,
+                      ),
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AppbarSubtitleEight(
+                        text:"Hello   " +  data['data']['name'],
+                      ),
+                    ),
+                    actions: [
+                      AppbarTrailingImage(
+                        imagePath: ImageConstant.imgArrowdown,
+                        margin: EdgeInsets.only(
+                          left: 4.h,
+                          top: 30.v,
+                          right: 1.h,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                CustomImageView(
-                  imagePath: ImageConstant.imgMegaphone,
-                  height: 32.adaptSize,
-                  width: 32.adaptSize,
-                  margin: EdgeInsets.only(
-                    left: 16.h,
-                    top: 3.v,
-                    bottom: 3.v,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+                  SizedBox(height: 10.v),
+
+                ],
+              ),
+            );
+          } else {
+            return Container();
+          }
+        });
   }
 
   Widget _buildBanner(BuildContext context) {
