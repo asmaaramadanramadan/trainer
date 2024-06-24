@@ -172,6 +172,7 @@ class Assets {
   static const String imagesLazy = 'assets/images/Lazy.png';
   static const String imagesLength = 'assets/images/Length.png';
   static const String imagesLocation = 'assets/images/location.png';
+  static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesMale = 'assets/images/male.png';
   static const String imagesMuscle = 'assets/images/muscle.png';
   static const String imagesPullups = 'assets/images/Pullups.png';
