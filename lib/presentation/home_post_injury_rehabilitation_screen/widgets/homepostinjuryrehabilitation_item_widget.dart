@@ -27,58 +27,61 @@ class HomepostinjuryrehabilitationItemWidget extends StatelessWidget {
         decoration: AppDecoration.fillWhiteA.copyWith(
           borderRadius: BorderRadiusStyle.roundedBorder8,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image(
                 image: NetworkImage(
-                  homepostinjuryrehabilitationItemModelObj['image']),
-              width: 100,
-              height: 100,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  child: Text(
-                    homepostinjuryrehabilitationItemModelObj['title'],
-                    style: CustomTextStyles.labelLargeLatoGray900,
-                    maxLines: 2,
+                    homepostinjuryrehabilitationItemModelObj['image']),
+                width: 70,
+                height: 70,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Text(
+                      homepostinjuryrehabilitationItemModelObj['title'],
+                      style: CustomTextStyles.labelLargeLatoGray900,
+                      maxLines: 3,
+                    ),
                   ),
-                ),
-                // SizedBox(height: 10.v),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 5.h,
-                    vertical: 1.v,
+                  // SizedBox(height: 10.v),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5.h,
+                      vertical: 1.v,
+                    ),
+                    decoration: AppDecoration.fillBlueGray.copyWith(
+                      borderRadius: BorderRadiusStyle.roundedBorder2,
+                    ),
+                    child: Text(
+                      homepostinjuryrehabilitationItemModelObj['time'],
+                      style: CustomTextStyles.bodySmallLatoGray90011,
+                    ),
                   ),
-                  decoration: AppDecoration.fillBlueGray.copyWith(
-                    borderRadius: BorderRadiusStyle.roundedBorder2,
+                  SizedBox(height: 3.v),
+                  Container(
+                    width: 57.h,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5.h,
+                      vertical: 2.v,
+                    ),
+                    decoration: AppDecoration.fillBlueGray.copyWith(
+                      borderRadius: BorderRadiusStyle.roundedBorder2,
+                    ),
+                    child: Text(
+                      homepostinjuryrehabilitationItemModelObj['level'],
+                      style: CustomTextStyles.bodySmallLatoGray90011,
+                    ),
                   ),
-                  child: Text(
-                    homepostinjuryrehabilitationItemModelObj['time'],
-                    style: CustomTextStyles.bodySmallLatoGray90011,
-                  ),
-                ),
-                SizedBox(height: 3.v),
-                Container(
-                  width: 57.h,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 5.h,
-                    vertical: 2.v,
-                  ),
-                  decoration: AppDecoration.fillBlueGray.copyWith(
-                    borderRadius: BorderRadiusStyle.roundedBorder2,
-                  ),
-                  child: Text(
-                    homepostinjuryrehabilitationItemModelObj['level'],
-                    style: CustomTextStyles.bodySmallLatoGray90011,
-                  ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

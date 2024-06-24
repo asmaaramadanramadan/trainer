@@ -178,6 +178,7 @@ class _ScanPageState extends State<ScanPage> {
 //   }
 
   Future postImage({required File imageFile}) async {
+    print('wwwwwwwwwwwwwwwwwwwwwwwwww');
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -194,6 +195,7 @@ class _ScanPageState extends State<ScanPage> {
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
       print(data);
+      print('fwefefwefwff3fwfw3f');
       return json.decode(data);
     } else {
       print(response.reasonPhrase);

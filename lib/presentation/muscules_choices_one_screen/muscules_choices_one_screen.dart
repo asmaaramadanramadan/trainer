@@ -1,13 +1,10 @@
 import 'package:fty/widgets/custom_icon_button.dart';
 import 'package:fty/widgets/custom_checkbox_button.dart';
 import 'package:fty/widgets/custom_drop_down.dart';
-import 'models/muscules_choices_one_model.dart';
 import 'package:fty/widgets/custom_text_form_field.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
-import 'bloc/muscules_choices_one_bloc.dart';
-import 'package:fty/presentation/done_one_dialog/done_one_dialog.dart';
 
 class MusculesChoicesOneScreen extends StatelessWidget {
   const MusculesChoicesOneScreen({Key? key}) : super(key: key);

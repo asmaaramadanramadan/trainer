@@ -3,10 +3,8 @@ import 'package:fty/widgets/app_bar/appbar_leading_image.dart';
 import 'package:fty/core/utils/validation_functions.dart';
 import 'package:fty/widgets/custom_text_form_field.dart';
 import 'package:fty/widgets/custom_elevated_button.dart';
-import 'models/forgot_password_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fty/core/app_export.dart';
-import 'bloc/forgot_password_bloc.dart';
 
 // ignore_for_file: must_be_immutable
 class ForgotPasswordScreen extends StatelessWidget {
