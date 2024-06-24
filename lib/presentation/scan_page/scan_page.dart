@@ -7,6 +7,7 @@ import 'package:fty/presentation/scan_page/scan_details.dart';
 import 'package:fty/presentation/scan_page/scan_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
 import '../../main.dart';
@@ -70,8 +71,13 @@ class _ScanPageState extends State<ScanPage> {
                     IconButton(
                         onPressed: () async {
                           _controller.start();
-                          XFile imagePicked = await controller.takePicture();
-                          await postImage(imageFile: File(imagePicked.path))
+                          // XFile imagePicked = await controller.takePicture();
+                          final ImagePicker picker = ImagePicker();
+                          final XFile? imagePicked = await picker.pickImage(
+                              source: ImageSource.gallery); //
+                          // XFile imagePicked = await ImagePicker.platform
+                          // .;
+                          await postImage(imageFile: File(imagePicked!.path))
                               .then((value) {
                             print(value);
                             Get.to(NutritionDetailScreen(
