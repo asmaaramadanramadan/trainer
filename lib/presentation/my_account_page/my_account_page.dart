@@ -47,8 +47,6 @@ class MyAccountPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16.v),
-                  Divider(),
-                  SizedBox(height: 15.v),
                   InkWell(
                     onTap: () {
                       Get.to(WorkPlan());
@@ -59,21 +57,21 @@ class MyAccountPage extends StatelessWidget {
                       arrowRight: ImageConstant.imgArrowRightRedA200,
                     ),
                   ),
-                  Divider(),
-                  SizedBox(height: 15.v),
-                  InkWell(
-                    onTap: () {
-                      Get.to(ExerciseScreen());
-                    },
-                    child: _buildAutoLayoutHorizontal(
-                      context,
-                      setting: 'All Plan',
-                      arrowRight: ImageConstant.imgArrowRightRedA200,
-                    ),
-                  ),
                   SizedBox(height: 16.v),
-                  Divider(),
-                  SizedBox(height: 15.v),
+                  // SizedBox(height: 15.v),
+                  // InkWell(
+                  //   onTap: () {
+                  //     Get.to(ExerciseScreen());
+                  //   },
+                  //   child: _buildAutoLayoutHorizontal(
+                  //     context,
+                  //     setting: 'All Plan',
+                  //     arrowRight: ImageConstant.imgArrowRightRedA200,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 16.v),
+                  // Divider(),
+                  // SizedBox(height: 15.v),
                   InkWell(
                     onTap: () {
                       Get.to(MealsScreen());
@@ -86,19 +84,19 @@ class MyAccountPage extends StatelessWidget {
                   ),
                   SizedBox(height: 16.v),
                   Divider(),
-                  SizedBox(height: 15.v),
-                  InkWell(
-                    onTap: () {
-                      Get.to(MyExerciseScreen());
-                    },
-                    child: _buildAutoLayoutHorizontal(
-                      context,
-                      setting: 'My Plan',
-                      arrowRight: ImageConstant.imgArrowRightRedA200,
-                    ),
-                  ),
-                  SizedBox(height: 16.v),
-                  Divider(),
+                  // SizedBox(height: 15.v),
+                  // InkWell(
+                  //   onTap: () {
+                  //     Get.to(MyExerciseScreen());
+                  //   },
+                  //   child: _buildAutoLayoutHorizontal(
+                  //     context,
+                  //     setting: 'My Plan',
+                  //     arrowRight: ImageConstant.imgArrowRightRedA200,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 16.v),
+                  // Divider(),
                   SizedBox(height: 16.v),
                   InkWell(
                     onTap: () {
@@ -112,8 +110,6 @@ class MyAccountPage extends StatelessWidget {
                   ),
 
                   SizedBox(height: 16.v),
-                  Divider(),
-                  SizedBox(height: 15.v),
                   InkWell(
                     onTap: () {
                       controller.DeleteAccount();
@@ -126,8 +122,6 @@ class MyAccountPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16.v),
-                  Divider(),
-                  SizedBox(height: 15.v),
                   InkWell(
                     onTap: () {
                       controller.logout();

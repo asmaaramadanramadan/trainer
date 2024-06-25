@@ -29,7 +29,24 @@ class HomeController extends GetxController {
     var headers = {'Authorization': 'Bearer ${prefs.getString('token') ?? ''}'};
 
     var request = http.Request('GET',
-        Uri.parse('https://trainer.codexa.codes/api/user/popular-exercises'));
+        Uri.parse('https://trainer.codexa.codes/api/user/plans'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var data = await response.stream.bytesToString();
+      return json.decode(data);
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+  Future getMyPlan() async {
+    var headers = {'Authorization': 'Bearer ${prefs.getString('token') ?? ''}'};
+
+    var request = http.Request('GET',
+        Uri.parse('https://trainer.codexa.codes/api/user/my-plans'));
 
     request.headers.addAll(headers);
 

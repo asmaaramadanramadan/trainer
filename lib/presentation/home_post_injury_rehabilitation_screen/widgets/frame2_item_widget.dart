@@ -87,7 +87,7 @@ class Frame2ItemWidget extends StatelessWidget {
                                   SizedBox(
                                     width: 128.h,
                                     child: Text(
-                                      data['type'],
+                                      data['type']??'',
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: CustomTextStyles
@@ -111,7 +111,7 @@ class Frame2ItemWidget extends StatelessWidget {
                                           decoration:
                                               AppDecoration.outlineBlack90001,
                                           child: Text(
-                                            data['calories_burn'],
+                                            data['calories_burn']??'',
                                             style: CustomTextStyles
                                                 .labelLargeLatoWhiteA700,
                                           ),
@@ -128,7 +128,7 @@ class Frame2ItemWidget extends StatelessWidget {
                                           decoration:
                                               AppDecoration.outlineBlack90001,
                                           child: Text(
-                                            data['time'],
+                                            data['time']??'',
                                             style: CustomTextStyles
                                                 .labelLargeLatoWhiteA700,
                                           ),

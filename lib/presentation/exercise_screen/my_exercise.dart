@@ -26,7 +26,7 @@ class MyExerciseScreen extends StatelessWidget {
           ),
         ),
         body: FutureBuilder(
-            future: homeController.getPopular(),
+            future: homeController.getMyPlan(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 Map data = snapshot.data as Map;

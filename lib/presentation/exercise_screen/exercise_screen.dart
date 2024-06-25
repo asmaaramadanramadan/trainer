@@ -6,7 +6,7 @@ import '../home_post_injury_rehabilitation_screen/controller/home_controller.dar
 import '../home_post_injury_rehabilitation_screen/widgets/frame2_item_widget.dart';
 
 class ExerciseScreen extends StatelessWidget {
-  ExerciseScreen({Key? key})
+   ExerciseScreen({Key? key})
       : super(
           key: key,
         );
